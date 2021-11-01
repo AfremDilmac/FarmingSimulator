@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AfremDilmac/FarmingSimulator">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Odisee_logo_%282019%29.svg/1200px-Odisee_logo_%282019%29.svg.png" alt="Logo" width="80" height="80">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Odisee_Logo_Co-hogeschool.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">FarmingSimulator</h3>
@@ -92,7 +92,8 @@ Dees volgen als u de javascript wilt kunnen zien en het lokaal op een computer w
   npm run dev
   ```
 <div id="cordova"></div>
-Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen zien
+Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen zien. 
+
 * cordova
   ```sh
   cordova build Android
