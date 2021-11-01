@@ -28,30 +28,28 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Over het project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">Gebouwd met</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#getting-started">Aan de slag</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequisites">Vereisten</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#usage">Gebruik</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#acknowledgments">Erkenningen</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+## Over het project
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc turpis metus, porttitor sed fringilla eget, scelerisque vitae ligula. Curabitur ullamcorper dui semper porta porta. Morbi eu urna sit amet elit maximus pulvinar nec sed leo.
 
@@ -68,7 +66,7 @@ elit maximus pulvinar nec sed leo.
 
 
 
-### Built With
+### Gebouwd met
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
@@ -79,11 +77,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Aan de slag
 
 Dit is een voorbeeld van hoe je dit moet doen om dit project lokaal te kunnen starten.
 
-### Prerequisites
+### Vereisten
 
 Dit is een voorbeeld van een lijst van dingen die je nodig hebt om de software te gebruiken.
 
@@ -106,7 +104,7 @@ Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen z
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Gebruik
 
 * Als u het op web wilt gebruiken gewoon op index.html drukken.
 * Als u het op telefoon wilt gebruiken dees volgen <a href="#cordova">phone</a>
@@ -129,7 +127,7 @@ Project Link: [https://github.com/AfremDilmac/FarmingSimulator](https://github.c
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Erkenningen
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
