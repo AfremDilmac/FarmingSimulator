@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AfremDilmac/FarmingSimulator">
-    <img src="https://i.ibb.co/Vg2Hhts/pngegg.png" alt="Logo" width="80" height="80">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Odisee_logo_%282019%29.svg/1200px-Odisee_logo_%282019%29.svg.png" alt="Logo" width="80" height="80">
   </a>
 
   <h3 align="center">FarmingSimulator</h3>
@@ -118,7 +118,7 @@ Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen z
 <!-- CONTACT -->
 ## Contact
 <div id="contact"></div>
-Dilmac Afrem - [@EyfromD](https://twitter.com/EyfromD) - afremdilmacc@gmail.com  
+Dilmac Afrem - afrem.dilmac@student.odisee.be 
 <br />
 Azzouz Adam - adam.azzouz@student.odisee.be
 
