@@ -25,7 +25,7 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Inhoudstabel</summary>
   <ol>
     <li>
       <a href="#about-the-project">Over het project</a>
@@ -67,7 +67,7 @@ elit maximus pulvinar nec sed leo.
 
 
 ### Gebouwd met
-
+<div id="built-with"></div>
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
 * [Three.js](https://threejs.org/)
@@ -78,11 +78,11 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 <!-- GETTING STARTED -->
 ## Aan de slag
-
+<div id="getting-started"></div>
 Dit is een voorbeeld van hoe je dit moet doen om dit project lokaal te kunnen starten.
 
 ### Vereisten
-
+<div id="prerequisites"></div>
 Dit is een voorbeeld van een lijst van dingen die je nodig hebt om de software te gebruiken.
 
 Dees volgen als u de javascript wilt kunnen zien en het lokaal op een computer wilt lanceren.
@@ -105,6 +105,7 @@ Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen z
 
 <!-- USAGE EXAMPLES -->
 ## Gebruik
+<div id="installation"></div>
 
 * Als u het op web wilt gebruiken gewoon op index.html drukken.
 * Als u het op telefoon wilt gebruiken dees volgen <a href="#cordova">phone</a>
@@ -117,7 +118,8 @@ Dees volgen als u gewoon de finale versie van uw project op mobiel wilt kunnen z
 <!-- CONTACT -->
 ## Contact
 <div id="contact"></div>
-Dilmac Afrem - [@EyfromD](https://twitter.com/EyfromD) - afremdilmacc@gmail.com
+Dilmac Afrem - [@EyfromD](https://twitter.com/EyfromD) - afremdilmacc@gmail.com  
+<br />
 Azzouz Adam - adam.azzouz@student.odisee.be
 
 Project Link: [https://github.com/AfremDilmac/FarmingSimulator](https://github.com/AfremDilmac/FarmingSimulator)
@@ -128,7 +130,7 @@ Project Link: [https://github.com/AfremDilmac/FarmingSimulator](https://github.c
 
 <!-- ACKNOWLEDGMENTS -->
 ## Erkenningen
-
+<div id="acknowledgments"></div>
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
 * [threejs-journey](https://threejs-journey.com)
