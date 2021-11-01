@@ -7,7 +7,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/AfremDilmac/FarmingSimulator">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Odisee_Logo_Co-hogeschool.png" alt="Logo" width="80" height="80">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Odisee_Logo_Co-hogeschool.png" alt="Logo" width="100" height="80">
   </a>
 
   <h3 align="center">FarmingSimulator</h3>
