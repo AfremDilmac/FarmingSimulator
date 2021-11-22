@@ -186,6 +186,15 @@ gltfLoader.load(
     }
 )
 
+let salade1 = ''
+let salade2 = ''
+let salade3 = ''
+let salade4 = ''
+let salade5 = ''
+let salade6 = ''
+let salade7 = ''
+let salade8 = ''
+
 //Lettuce 
 gltfLoader.load(
     'lettuce.glb',
@@ -194,7 +203,106 @@ gltfLoader.load(
         gltf.scene.position.x = -2.36
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
-        scene.add(gltf.scene)
+        salade1 = gltf.scene
+        salade1.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade1)
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+        gltf.scene.position.x = -1.45
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -2.28
+        salade2 = gltf.scene
+        salade2.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade2)
+
+
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+
+        gltf.scene.position.x = -1.45
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -1.45
+        salade3 = gltf.scene
+        salade3.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade3)
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+        gltf.scene.position.x = -2.36
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -1.45
+        salade4 = gltf.scene
+        salade4.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade4)
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+        gltf.scene.position.x = 1.42
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -2.28
+        salade5 = gltf.scene
+        salade5.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade5)
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+        gltf.scene.position.x = 2.33
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -2.28
+        salade6 = gltf.scene
+        salade6.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade6)
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+
+        gltf.scene.position.x = 1.42
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -1.45
+        salade7 = gltf.scene
+        salade7.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade7)
+        
+
+    }
+)
+
+gltfLoader.load(
+    'lettuce.glb',
+    (gltf) =>
+    {
+        gltf.scene.position.x = 2.35
+        gltf.scene.position.y = 0
+        gltf.scene.position.z = -1.45
+        salade8 = gltf.scene
+        salade8.scale.set(0.6, 0.6, 0.6)
+        scene.add(salade8)
     }
 )
 
@@ -257,6 +365,8 @@ renderer.setClearColor(debugObject.clearColor)
  */
 const clock = new THREE.Clock()
 
+let growth = 0.6
+
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
@@ -266,6 +376,36 @@ const tick = () =>
     
     if(robot) {
         robot.rotation.y += 0.008
+    }
+
+    growth += 0.0005
+    if(salade1) {
+        if (growth > 1.15) {
+            growth = 0.6
+        }
+        salade1.rotation.y += 0.002
+        salade1.scale.set(growth, growth, growth)
+
+        salade2.rotation.y += 0.002
+        salade2.scale.set(growth, growth, growth)
+
+        salade3.rotation.y += 0.002
+        salade3.scale.set(growth, growth, growth)
+
+        salade4.rotation.y += 0.002
+        salade4.scale.set(growth, growth, growth)
+
+        salade5.rotation.y += 0.002
+        salade5.scale.set(growth, growth, growth)
+
+        salade6.rotation.y += 0.002
+        salade6.scale.set(growth, growth, growth)
+
+        salade7.rotation.y += 0.002
+        salade7.scale.set(growth, growth, growth)
+
+        salade8.rotation.y += 0.002
+        salade8.scale.set(growth, growth, growth)
     }
 
     // Render
