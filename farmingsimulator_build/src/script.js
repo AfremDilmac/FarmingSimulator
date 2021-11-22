@@ -51,9 +51,9 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
  */
 // Debug
 const debugObject = {}
-const gui = new dat.GUI({
-    width: 400
-})
+// const gui = new dat.GUI({
+//     width: 400
+// })
 
 
 
@@ -62,6 +62,10 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
+
+/**
+ * Water
+ */
 
 // Geometry
 const waterGeometry = new THREE.PlaneGeometry(1.4, 6, 512, 512)
