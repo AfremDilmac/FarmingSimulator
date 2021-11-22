@@ -5,6 +5,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js'
 import { gsap } from 'gsap'
+import waterVertexShader from './shaders/water/vertex.glsl'
+import waterFragmentShader from './shaders/water/fragment.glsl'
 
 /**
  * Spector JS
@@ -60,6 +62,48 @@ const canvas = document.querySelector('canvas.webgl')
 
 // Scene
 const scene = new THREE.Scene()
+
+// Geometry
+const waterGeometry = new THREE.PlaneGeometry(1.4, 6, 512, 512)
+const waterGeometry2 = new THREE.PlaneGeometry(6, 1.4, 512, 512)
+
+// Colors
+debugObject.depthColor = '#186691'
+debugObject.surfaceColor = '#9bd8ff'
+
+
+// Material
+const waterMaterial = new THREE.ShaderMaterial({
+    vertexShader: waterVertexShader,
+    fragmentShader: waterFragmentShader,
+    uniforms:
+    {
+        uTime: { value: 0 },
+        
+        uBigWavesElevation: { value: 0.043 },
+        uBigWavesFrequency: { value: new THREE.Vector2(4, 1.5) },
+        uBigWavesSpeed: { value: 0.75 },
+
+        uSmallWavesElevation: { value: 0.15 },
+        uSmallWavesFrequency: { value: 3 },
+        uSmallWavesSpeed: { value: 0.2 },
+        uSmallIterations: { value: 4 },
+
+        uDepthColor: { value: new THREE.Color(debugObject.depthColor) },
+        uSurfaceColor: { value: new THREE.Color(debugObject.surfaceColor) },
+        uColorOffset: { value: 0.08 },
+        uColorMultiplier: { value: 2.452 }
+    }
+})
+
+// Mesh
+const water = new THREE.Mesh(waterGeometry, waterMaterial)
+water.rotation.x = - Math.PI * 0.5
+scene.add(water)
+const water2 = new THREE.Mesh(waterGeometry2, waterMaterial)
+water2.rotation.x = - Math.PI * 0.5
+scene.add(water2)
+
 
 /**
  * Overlay
@@ -157,6 +201,8 @@ const bakedMaterial = new THREE.MeshBasicMaterial({ map: bakedTexture })
 
 // Pole light material
 const poleLightMaterial = new THREE.MeshBasicMaterial({ color: 0xffffe5})
+
+
 
 /**
  * Model
@@ -360,6 +406,8 @@ renderer.outputEncoding = THREE.sRGBEncoding
 debugObject.clearColor = '#201919'
 renderer.setClearColor(debugObject.clearColor)
 
+
+
 /**
  * Animate
  */
@@ -377,6 +425,7 @@ const tick = () =>
     if(robot) {
         robot.rotation.y += 0.008
     }
+
 
     growth += 0.0005
     if(salade1) {
@@ -407,6 +456,9 @@ const tick = () =>
         salade8.rotation.y += 0.002
         salade8.scale.set(growth, growth, growth)
     }
+
+      // Water
+      waterMaterial.uniforms.uTime.value = elapsedTime
 
     // Render
     renderer.render(scene, camera)
