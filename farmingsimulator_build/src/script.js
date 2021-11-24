@@ -20,7 +20,9 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
  * Loaders
  */
  const loadingBarElement = document.querySelector('.loading-bar')
- const loadingManager = new THREE.LoadingManager(
+ let sceneReady = false
+
+const loadingManager = new THREE.LoadingManager(
      // Loaded
      () =>
      {
@@ -33,7 +35,13 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
              // Update loadingBarElement
              loadingBarElement.classList.add('ended')
              loadingBarElement.style.transform = ''
+             
          }, 500)
+
+         window.setTimeout(() =>
+        {
+            sceneReady = true
+        }, 2000)
      },
  
      // Progress
@@ -51,10 +59,9 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
  */
 // Debug
 const debugObject = {}
-// const gui = new dat.GUI({
-//     width: 400
-// })
-
+const gui = new dat.GUI({
+ width: 400
+})
 
 
 // Canvas
@@ -68,8 +75,8 @@ const scene = new THREE.Scene()
  */
 
 // Geometry
-const waterGeometry = new THREE.PlaneGeometry(1.4, 6, 512, 512)
-const waterGeometry2 = new THREE.PlaneGeometry(6, 1.4, 512, 512)
+const waterGeometry = new THREE.PlaneGeometry(2, 6, 512, 512)
+const waterGeometry2 = new THREE.PlaneGeometry(6, 2, 512, 512)
 
 // Colors
 debugObject.depthColor = '#186691'
@@ -103,9 +110,11 @@ const waterMaterial = new THREE.ShaderMaterial({
 // Mesh
 const water = new THREE.Mesh(waterGeometry, waterMaterial)
 water.rotation.x = - Math.PI * 0.5
+water.position.y = -0.05
 scene.add(water)
 const water2 = new THREE.Mesh(waterGeometry2, waterMaterial)
 water2.rotation.x = - Math.PI * 0.5
+water2.position.y = -0.05
 scene.add(water2)
 
 
@@ -156,9 +165,6 @@ const updateAllMaterials = () =>
     })
 }
 
-/**
- * lights
- */
 
 /**
  * Lights
@@ -172,6 +178,8 @@ const updateAllMaterials = () =>
  rectAreaLight.height = 5
  rectAreaLight.lookAt(new THREE.Vector3())
 scene.add(rectAreaLight)
+
+
 
 /**
  * Loaders
@@ -220,6 +228,7 @@ gltfLoader.load(
         const poleLight = gltf.scene.children.find(child => child.name === 'poleLight')   
         bakedMesh.material = bakedMaterial
         poleLight.material = poleLightMaterial
+        gltf.scene.receiveShadow = true
         scene.add(gltf.scene)
 
         updateAllMaterials()
@@ -253,6 +262,7 @@ gltfLoader.load(
         gltf.scene.position.x = -2.36
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
+        gltf.scene.castShadow = true
         salade1 = gltf.scene
         salade1.scale.set(0.6, 0.6, 0.6)
         scene.add(salade1)
@@ -266,6 +276,7 @@ gltfLoader.load(
         gltf.scene.position.x = -1.45
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
+        gltf.scene.castShadow = true
         salade2 = gltf.scene
         salade2.scale.set(0.6, 0.6, 0.6)
         scene.add(salade2)
@@ -282,6 +293,7 @@ gltfLoader.load(
         gltf.scene.position.x = -1.45
         gltf.scene.position.y = 0
         gltf.scene.position.z = -1.45
+        gltf.scene.castShadow = true
         salade3 = gltf.scene
         salade3.scale.set(0.6, 0.6, 0.6)
         scene.add(salade3)
@@ -295,6 +307,7 @@ gltfLoader.load(
         gltf.scene.position.x = -2.36
         gltf.scene.position.y = 0
         gltf.scene.position.z = -1.45
+        gltf.scene.castShadow = true
         salade4 = gltf.scene
         salade4.scale.set(0.6, 0.6, 0.6)
         scene.add(salade4)
@@ -308,6 +321,7 @@ gltfLoader.load(
         gltf.scene.position.x = 1.42
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
+        gltf.scene.castShadow = true
         salade5 = gltf.scene
         salade5.scale.set(0.6, 0.6, 0.6)
         scene.add(salade5)
@@ -321,6 +335,7 @@ gltfLoader.load(
         gltf.scene.position.x = 2.33
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
+        gltf.scene.castShadow = true
         salade6 = gltf.scene
         salade6.scale.set(0.6, 0.6, 0.6)
         scene.add(salade6)
@@ -335,6 +350,7 @@ gltfLoader.load(
         gltf.scene.position.x = 1.42
         gltf.scene.position.y = 0
         gltf.scene.position.z = -1.45
+        gltf.scene.castShadow = true
         salade7 = gltf.scene
         salade7.scale.set(0.6, 0.6, 0.6)
         scene.add(salade7)
@@ -350,12 +366,12 @@ gltfLoader.load(
         gltf.scene.position.x = 2.35
         gltf.scene.position.y = 0
         gltf.scene.position.z = -1.45
+        gltf.scene.castShadow = true
         salade8 = gltf.scene
         salade8.scale.set(0.6, 0.6, 0.6)
         scene.add(salade8)
     }
 )
-
 
 
 /**
@@ -382,6 +398,22 @@ window.addEventListener('resize', () =>
 })
 
 /**
+ * Mouse
+ */
+ const mouse = new THREE.Vector2()
+
+ window.addEventListener('mousemove', (event) =>
+ {
+     mouse.x = event.clientX / sizes.width * 2 - 1
+     mouse.y = - (event.clientY / sizes.height) * 2 + 1
+ })
+
+ window.addEventListener('click', () =>
+{
+
+})
+
+/**
  * Camera
  */
 // Base camera
@@ -395,6 +427,29 @@ scene.add(camera)
 const controls = new OrbitControls(camera, canvas)
 controls.enableDamping = true
 
+/**
+ * Points
+ */
+
+ const points = [
+    {
+        position: new THREE.Vector3(1.25, 1.25, 1.05),
+        element: document.querySelector('.point-0')
+    },
+    {
+        position: new THREE.Vector3(- 1.96, 0.91, - 1.77),
+        element: document.querySelector('.point-1')
+    },
+    {
+        position: new THREE.Vector3( 1.88, 0.91, - 1.77),
+        element: document.querySelector('.point-2')
+    },
+    {
+        position: new THREE.Vector3(0, 1.43, 0),
+        element: document.querySelector('.point-3')
+    }
+   
+]
 
 /**
  * Renderer
@@ -411,7 +466,6 @@ debugObject.clearColor = '#201919'
 renderer.setClearColor(debugObject.clearColor)
 
 
-
 /**
  * Animate
  */
@@ -425,6 +479,10 @@ const tick = () =>
 
     // Update controls
     controls.update()
+
+    if (sceneReady) {
+        
+    
     
     if(robot) {
         robot.rotation.y += 0.008
@@ -461,8 +519,19 @@ const tick = () =>
         salade8.scale.set(growth, growth, growth)
     }
 
+
+    for(const point of points)
+    {
+        const screenPosition = point.position.clone()
+        screenPosition.project(camera)
+
+        const translateX = screenPosition.x * sizes.width * 0.5
+        const translateY = - screenPosition.y * sizes.height * 0.5
+        point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
+    }
       // Water
       waterMaterial.uniforms.uTime.value = elapsedTime
+    }
 
     // Render
     renderer.render(scene, camera)
