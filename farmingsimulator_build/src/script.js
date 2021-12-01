@@ -251,6 +251,11 @@ gltfLoader.load(
     }
 )
 let robot = ''
+const robotproperities = {
+    robotlvl: 1,
+    robotPrecision: 4
+}
+
 //Robot Arm
 gltfLoader.load(
     'robot.glb',
@@ -417,71 +422,140 @@ window.addEventListener('mousemove', (event) => {
 })
 
 window.addEventListener('click', (_event) => {
-
+    let random = Math.floor(Math.random() * robotproperities.robotPrecision);
     if (sceneReady) {
         let timing = growth
-        
+
         if (currentIntersect) {
-/**/
+
+            //SALADE
             switch (currentIntersect.object.id) {
                 case 35:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                  
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 34:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 32:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 33:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 38:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 37:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 39:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
                 case 36:
-                   console.log("Salade ID: " + currentIntersect.object.id)
-                    if (timing >= 1.05 && timing <= 1.44) {
-                        console.log("Stonks + €0.50")
-                    } 
-                    else{console.log("Destonks - €0.50")}
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                console.log("Stonks + €0.50")
+                            } else {
+                                console.log("Destonks - €0.50")
+                            }
+                            break;
+                        default:
+                            console.log("Miss...")
+                    }
+                    console.log("Salade ID: " + currentIntersect.object.id)
+
                     break;
+                    //ROBOT ARM
                 case 26:
                     console.log("Robotic Arm ID: " + currentIntersect.object.id)
+                    console.log("Robot lvl: " + robotproperities.robotlvl)
+                    console.log(`Robot precision: ${robotproperities.robotlvl}/${robotproperities.robotPrecision}`)
             }
         }
     }
@@ -548,7 +622,7 @@ let growth = 0.6
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
-    
+
     // Update controls
     controls.update()
 
