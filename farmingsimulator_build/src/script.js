@@ -431,7 +431,6 @@ window.addEventListener('click', (_event) => {
             //SALADE
             switch (currentIntersect.object.id) {
                 case 35:
-                  
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
