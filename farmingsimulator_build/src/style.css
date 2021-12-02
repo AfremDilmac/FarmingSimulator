@@ -44,6 +44,59 @@ body
     left: 50%;
 }
 
+.pointmoney
+{
+    position: absolute;
+    top: 3%;
+    left: 35%;
+}
+
+.pointrobot
+{
+    position: absolute;
+    top: 3%;
+    left: 70%;
+}
+
+
+.pointmoney .labelmoney{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
+.pointrobot .labelrobot{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
 .point .label
 {
     position: absolute;
@@ -81,8 +134,54 @@ body
     font-size: 14px;
 }
 
+.pointmoney .textmoney{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.pointrobot .textrobot{
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: 70px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
 .point .text
 {
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.pointmoney .textmoney{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.pointrobot .textrobot{
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
@@ -92,6 +191,24 @@ body
 .point:hover .text
 {
     opacity: 1;
+}
+
+.pointmoney:hover .textmoney{
+    opacity: 1;
+}
+
+.pointrobot:hover .textrobot{
+    opacity: 1;
+}
+
+.pointmoney.visible .labelmoney
+{
+    transform: scale(1, 1);
+}
+
+.pointrobot.visible .labelrobot
+{
+    transform: scale(1, 1);
 }
 
 .point.visible .label

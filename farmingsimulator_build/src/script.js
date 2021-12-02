@@ -17,6 +17,16 @@ import waterVertexShader from './shaders/water/vertex.glsl'
 import waterFragmentShader from './shaders/water/fragment.glsl'
 
 /**
+ * Html JS link
+ */
+const lblMoney = document.querySelector('.labelmoney')
+const lblRobot = document.querySelector('.labelrobot')
+const descriptionRobot = document.querySelector('.textrobot')
+
+let money = 0;
+let robotlvl = 1;
+
+/**
  * Loaders
  */
 const loadingBarElement = document.querySelector('.loading-bar')
@@ -58,10 +68,11 @@ const loadingManager = new THREE.LoadingManager(
  */
 // Debug
 const debugObject = {}
+/*
 const gui = new dat.GUI({
     width: 400
 })
-
+*/
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -253,7 +264,8 @@ gltfLoader.load(
 let robot = ''
 const robotproperities = {
     robotlvl: 1,
-    robotPrecision: 4
+    robotPrecision: 5,
+    robotUpgrade: 2
 }
 
 //Robot Arm
@@ -261,6 +273,7 @@ gltfLoader.load(
     'robot.glb',
     (gltf) => {
         robot = gltf.scene
+        robot.scale.set(0.6, 0.6, 0.6)
         scene.add(robot)
     }
 )
@@ -434,14 +447,16 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
+
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -449,14 +464,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -464,14 +480,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -479,14 +496,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -494,14 +512,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -509,14 +528,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -524,14 +544,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -539,14 +560,15 @@ window.addEventListener('click', (_event) => {
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
-                                console.log("Stonks + €0.50")
+                                money = money + 0.50
                             } else {
-                                console.log("Destonks - €0.50")
+                                money = money - 0.10
                             }
                             break;
                         default:
                             console.log("Miss...")
                     }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
@@ -555,7 +577,49 @@ window.addEventListener('click', (_event) => {
                     console.log("Robotic Arm ID: " + currentIntersect.object.id)
                     console.log("Robot lvl: " + robotproperities.robotlvl)
                     console.log(`Robot precision: ${robotproperities.robotlvl}/${robotproperities.robotPrecision}`)
-            }
+                    if (money >= 5) {
+                        if (robotproperities.robotPrecision == 5) {
+                            robotproperities.robotPrecision = 4
+                            money = money - 5
+                            robot.scale.set(0.7, 0.7, 0.7)
+                            robotlvl = 2
+                            descriptionRobot.innerHTML = 'Upgrade cost €10'
+                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        }
+                    }
+                    if (money >= 10) {
+                        if (robotproperities.robotPrecision == 4) {
+                            robotproperities.robotPrecision = 3
+                            money = money - 10
+                            robot.scale.set(0.8, 0.8, 0.8)
+                            robotlvl = 3
+                            descriptionRobot.innerHTML = 'Upgrade cost €20'
+                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        }
+                    }
+                    if (money >= 20) {
+                        if (robotproperities.robotPrecision == 3) {
+                            robotproperities.robotPrecision = 2
+                            money = money - 20
+                            robot.scale.set(0.9, 0.9, 0.9)
+                            robotlvl = 4
+                            descriptionRobot.innerHTML = 'Upgrade cost €40'
+                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        }
+                    }
+                    if (money >= 40) {
+                        if (robotproperities.robotPrecision == 2) {
+                            robotproperities.robotPrecision = 1
+                            money = money - 40
+                            robot.scale.set(1, 1, 1)
+                            robotlvl = 5
+                            descriptionRobot.innerHTML = 'MAX'
+                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        }
+                    }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                    console.log(robotproperities.robotPrecision)
+                }
         }
     }
 })
@@ -691,16 +755,10 @@ const tick = () => {
             currentIntersect = intersects[0]
         } else {
             if (currentIntersect) {
-
             }
             currentIntersect = null
-
         }
-
     }
-
-
-
 
 
     // Render
