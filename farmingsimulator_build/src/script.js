@@ -22,6 +22,7 @@ import waterFragmentShader from './shaders/water/fragment.glsl'
 const lblMoney = document.querySelector('.labelmoney')
 const lblRobot = document.querySelector('.labelrobot')
 const descriptionRobot = document.querySelector('.textrobot')
+const lblRobotPrecision = document.querySelector('.textr')
 
 let money = 0;
 let robotlvl = 1;
@@ -448,6 +449,7 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                console.log(currentIntersect.object.id)
 
                             } else {
                                 money = money - 0.10
@@ -457,7 +459,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                 case 34:
@@ -473,7 +474,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                 case 32:
@@ -489,7 +489,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                 case 33:
@@ -505,8 +504,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
-
                     break;
                 case 38:
                     switch (random) {
@@ -521,8 +518,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
-
                     break;
                 case 37:
                     switch (random) {
@@ -537,7 +532,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                 case 39:
@@ -553,7 +547,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                 case 36:
@@ -569,7 +562,6 @@ window.addEventListener('click', (_event) => {
                             console.log("Miss...")
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log("Salade ID: " + currentIntersect.object.id)
 
                     break;
                     //ROBOT ARM
@@ -585,6 +577,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 2
                             descriptionRobot.innerHTML = 'Upgrade cost €10'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                            lblRobotPrecision.innerHTML = 'Precision: 40%'
                         }
                     }
                     if (money >= 10) {
@@ -595,6 +588,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 3
                             descriptionRobot.innerHTML = 'Upgrade cost €20'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                            lblRobotPrecision.innerHTML = 'Precision: 60%'
                         }
                     }
                     if (money >= 20) {
@@ -605,6 +599,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 4
                             descriptionRobot.innerHTML = 'Upgrade cost €40'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                            lblRobotPrecision.innerHTML = 'Precision: 80%'
                         }
                     }
                     if (money >= 40) {
@@ -615,11 +610,12 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 5
                             descriptionRobot.innerHTML = 'MAX'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                            lblRobotPrecision.innerHTML = 'Precision: 100%'
                         }
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     console.log(robotproperities.robotPrecision)
-                }
+            }
         }
     }
 })
@@ -754,8 +750,7 @@ const tick = () => {
 
             currentIntersect = intersects[0]
         } else {
-            if (currentIntersect) {
-            }
+            if (currentIntersect) {}
             currentIntersect = null
         }
     }

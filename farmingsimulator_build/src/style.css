@@ -134,6 +134,23 @@ body
     font-size: 14px;
 }
 
+.point .textr
+{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
 .pointmoney .textmoney{
     position: absolute;
     top: 30px;
@@ -174,6 +191,14 @@ body
     cursor: help;
 }
 
+.point .textr
+{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
 .pointmoney .textmoney{
     opacity: 0;
     transition: opacity 0.3s;
@@ -189,6 +214,11 @@ body
 }
 
 .point:hover .text
+{
+    opacity: 1;
+}
+
+.point:hover .textr
 {
     opacity: 1;
 }
