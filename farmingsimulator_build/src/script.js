@@ -577,7 +577,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 2
                             descriptionRobot.innerHTML = 'Upgrade cost €10'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 40%'
+                            lblRobotPrecision.innerHTML = 'Precision: 25%'
                         }
                     }
                     if (money >= 10) {
@@ -588,7 +588,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 3
                             descriptionRobot.innerHTML = 'Upgrade cost €20'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 60%'
+                            lblRobotPrecision.innerHTML = 'Precision: 33%'
                         }
                     }
                     if (money >= 20) {
@@ -599,7 +599,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 4
                             descriptionRobot.innerHTML = 'Upgrade cost €40'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 80%'
+                            lblRobotPrecision.innerHTML = 'Precision: 50%'
                         }
                     }
                     if (money >= 40) {
