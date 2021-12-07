@@ -44,6 +44,13 @@ body
     left: 50%;
 }
 
+#loadingimage{
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    width: 20%;
+}
+
 .pointmoney
 {
     position: absolute;

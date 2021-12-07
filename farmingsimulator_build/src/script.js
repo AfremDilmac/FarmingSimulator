@@ -23,6 +23,23 @@ const lblMoney = document.querySelector('.labelmoney')
 const lblRobot = document.querySelector('.labelrobot')
 const descriptionRobot = document.querySelector('.textrobot')
 const lblRobotPrecision = document.querySelector('.textr')
+const imgloader = document.querySelector('#loadingimage')
+
+/**
+ * Sounds
+ */
+
+let sndBackground = new Audio()
+sndBackground.src = '/sound/background.mp3'
+
+let sndLevelUp = new Audio()
+sndLevelUp.src = '/sound/levelup.mp3'
+
+let sndMoneyWin = new Audio()
+sndMoneyWin.src = '/sound/money_win.mp3'
+
+let sndSaladCut = new Audio()
+sndSaladCut.src = '/sound/salad_cut.mp3'
 
 let money = 0;
 let robotlvl = 1;
@@ -48,11 +65,14 @@ const loadingManager = new THREE.LoadingManager(
             // Update loadingBarElement
             loadingBarElement.classList.add('ended')
             loadingBarElement.style.transform = ''
+            imgloader.style.display = 'none'
 
         }, 500)
 
         window.setTimeout(() => {
             sceneReady = true
+            sndBackground.play()
+            
         }, 2000)
     },
 
@@ -63,6 +83,11 @@ const loadingManager = new THREE.LoadingManager(
         loadingBarElement.style.transform = `scaleX(${progressRatio})`
     }
 )
+
+sndBackground.addEventListener("ended", function(){
+    sndBackground.currentTime = 0;
+    console.log("ended");
+});
 
 /**
  * Base
@@ -266,7 +291,8 @@ let robot = ''
 const robotproperities = {
     robotlvl: 1,
     robotPrecision: 5,
-    robotUpgrade: 2
+    robotUpgrade: 2,
+    robotLvlUp: false
 }
 
 //Robot Arm
@@ -445,11 +471,12 @@ window.addEventListener('click', (_event) => {
             //SALADE
             switch (currentIntersect.object.id) {
                 case 35:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
-                                console.log(currentIntersect.object.id)
+                                sndMoneyWin.play()
 
                             } else {
                                 money = money - 0.10
@@ -462,10 +489,12 @@ window.addEventListener('click', (_event) => {
 
                     break;
                 case 34:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -477,10 +506,12 @@ window.addEventListener('click', (_event) => {
 
                     break;
                 case 32:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -492,10 +523,12 @@ window.addEventListener('click', (_event) => {
 
                     break;
                 case 33:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -506,10 +539,12 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                 case 38:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -520,10 +555,12 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                 case 37:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -535,10 +572,12 @@ window.addEventListener('click', (_event) => {
 
                     break;
                 case 39:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -550,10 +589,12 @@ window.addEventListener('click', (_event) => {
 
                     break;
                 case 36:
+                    sndSaladCut.play()
                     switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                sndMoneyWin.play()
                             } else {
                                 money = money - 0.10
                             }
@@ -578,6 +619,9 @@ window.addEventListener('click', (_event) => {
                             descriptionRobot.innerHTML = 'Upgrade cost €10'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
                             lblRobotPrecision.innerHTML = 'Precision: 25%'
+                            robotproperities.robotLvlUp = true
+                            sndLevelUp.play()
+
                         }
                     }
                     if (money >= 10) {
@@ -589,6 +633,9 @@ window.addEventListener('click', (_event) => {
                             descriptionRobot.innerHTML = 'Upgrade cost €20'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
                             lblRobotPrecision.innerHTML = 'Precision: 33%'
+                            robotproperities.robotLvlUp = true
+                            sndLevelUp.play()
+
                         }
                     }
                     if (money >= 20) {
@@ -600,6 +647,9 @@ window.addEventListener('click', (_event) => {
                             descriptionRobot.innerHTML = 'Upgrade cost €40'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
                             lblRobotPrecision.innerHTML = 'Precision: 50%'
+                            robotproperities.robotLvlUp = true
+                            sndLevelUp.play()
+
                         }
                     }
                     if (money >= 40) {
@@ -611,6 +661,9 @@ window.addEventListener('click', (_event) => {
                             descriptionRobot.innerHTML = 'MAX'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
                             lblRobotPrecision.innerHTML = 'Precision: 100%'
+                            robotproperities.robotLvlUp = true
+                            sndLevelUp.play()
+
                         }
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
@@ -619,6 +672,21 @@ window.addEventListener('click', (_event) => {
         }
     }
 })
+
+/**
+ * Renderer
+ */
+ const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true
+})
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.outputEncoding = THREE.sRGBEncoding
+// Clear color
+debugObject.clearColor = '#201919'
+renderer.setClearColor(debugObject.clearColor)
+
 
 /**
  * Camera
@@ -631,8 +699,17 @@ camera.position.z = -6.4
 scene.add(camera)
 
 // Controls
-const controls = new OrbitControls(camera, canvas)
+const controls = new OrbitControls(camera, renderer.domElement)
+controls.addEventListener( 'change', render );
+controls.minPolarAngle = 0;
+controls.maxPolarAngle =  Math.PI * 0.4;
 controls.enableDamping = true
+
+function render() {
+
+    renderer.render( scene, camera );
+
+}
 
 /**
  * Points
@@ -656,19 +733,7 @@ const points = [{
     }
 ]
 
-/**
- * Renderer
- */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: true
-})
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.outputEncoding = THREE.sRGBEncoding
-// Clear color
-debugObject.clearColor = '#201919'
-renderer.setClearColor(debugObject.clearColor)
+
 
 /**
  * Animate
@@ -688,6 +753,13 @@ const tick = () => {
     if (sceneReady) {
         if (robot) {
             robot.rotation.y += 0.008
+        }
+
+        if (robotproperities.robotLvlUp) {
+            setTimeout(function(){
+                robot.position.y += 0.05
+           }, 2000);//wait 2 seconds
+            robotproperities.robotLvlUp = false
         }
 
         growth += 0.0005
@@ -754,7 +826,7 @@ const tick = () => {
             currentIntersect = null
         }
     }
-
+ 
 
     // Render
     renderer.render(scene, camera)
