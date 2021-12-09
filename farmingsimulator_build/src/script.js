@@ -31,6 +31,7 @@ const imgloader = document.querySelector('#loadingimage')
 
 let sndBackground = new Audio()
 sndBackground.src = '/sound/background.mp3'
+sndBackground.play()
 
 let sndLevelUp = new Audio()
 sndLevelUp.src = '/sound/levelup.mp3'
@@ -71,7 +72,7 @@ const loadingManager = new THREE.LoadingManager(
 
         window.setTimeout(() => {
             sceneReady = true
-            sndBackground.play()
+           
             
         }, 2000)
     },
