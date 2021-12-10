@@ -24,6 +24,7 @@ const lblRobot = document.querySelector('.labelrobot')
 const descriptionRobot = document.querySelector('.textrobot')
 const lblRobotPrecision = document.querySelector('.textr')
 const imgloader = document.querySelector('#loadingimage')
+const lblCollect = document.querySelector('.labelcollect')
 
 /**
  * Sounds
@@ -473,18 +474,23 @@ window.addEventListener('click', (_event) => {
             switch (currentIntersect.object.id) {
                 case 35:
                     sndSaladCut.play()
-                    switch (random) {
+                 switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
 
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -495,13 +501,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -512,13 +524,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -529,13 +547,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
@@ -545,13 +569,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
@@ -561,13 +591,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -578,13 +614,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -595,13 +637,19 @@ window.addEventListener('click', (_event) => {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+
                             } else {
                                 money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
                             }
                             break;
                         default:
-                            console.log("Miss...")
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
@@ -619,7 +667,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 2
                             descriptionRobot.innerHTML = 'Upgrade cost €10'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 25%'
+                            lblRobotPrecision.innerHTML = 'Precision: 25% <br> Speed: 25%'
                             robotproperities.robotLvlUp = true
                             sndLevelUp.play()
 
@@ -633,7 +681,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 3
                             descriptionRobot.innerHTML = 'Upgrade cost €20'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 33%'
+                            lblRobotPrecision.innerHTML = 'Precision: 50% <br> Speed: 50%'
                             robotproperities.robotLvlUp = true
                             sndLevelUp.play()
 
@@ -647,7 +695,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 4
                             descriptionRobot.innerHTML = 'Upgrade cost €40'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 50%'
+                            lblRobotPrecision.innerHTML = 'Precision: 75% <br> Speed: 75%'
                             robotproperities.robotLvlUp = true
                             sndLevelUp.play()
 
@@ -661,7 +709,7 @@ window.addEventListener('click', (_event) => {
                             robotlvl = 5
                             descriptionRobot.innerHTML = 'MAX'
                             lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 100%'
+                            lblRobotPrecision.innerHTML = 'Precision: 100% <br> Speed: 100%'
                             robotproperities.robotLvlUp = true
                             sndLevelUp.play()
 
@@ -752,15 +800,26 @@ const tick = () => {
     controls.update()
 
     if (sceneReady) {
-        if (robot) {
+        if (robotproperities.robotPrecision <= 4) {
+            switch (robotproperities.robotPrecision) {
+                case 4:
+                    money = money + elapsedTime / 20000
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                    break;
+                    case 3:
+                    money = money + elapsedTime / 15000
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                    break;
+                    case 2:
+                    money = money + elapsedTime / 12500
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                    break;
+                    case 1:
+                    money = money + elapsedTime / 10000
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                    break;
+            }
             robot.rotation.y += 0.008
-        }
-
-        if (robotproperities.robotLvlUp) {
-            setTimeout(function(){
-                robot.position.y += 0.05
-           }, 2000);//wait 2 seconds
-            robotproperities.robotLvlUp = false
         }
 
         growth += 0.0005
