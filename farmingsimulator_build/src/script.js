@@ -32,7 +32,7 @@ const lblCollect = document.querySelector('.labelcollect')
 
 let sndBackground = new Audio()
 sndBackground.src = '/sound/background.mp3'
-sndBackground.play()
+// sndBackground.play()
 
 let sndLevelUp = new Audio()
 sndLevelUp.src = '/sound/levelup.mp3'
@@ -43,7 +43,7 @@ sndMoneyWin.src = '/sound/money_win.mp3'
 let sndSaladCut = new Audio()
 sndSaladCut.src = '/sound/salad_cut.mp3'
 
-let money = 5;
+let money = 10;
 let robotlvl = 1;
 
 /**
@@ -88,7 +88,7 @@ const loadingManager = new THREE.LoadingManager(
 
 sndBackground.addEventListener("ended", function(){
     sndBackground.currentTime = 0;
-    console.log("ended");
+   
 });
 
 /**
@@ -96,11 +96,11 @@ sndBackground.addEventListener("ended", function(){
  */
 // Debug
 const debugObject = {}
-/*
+
 const gui = new dat.GUI({
     width: 400
 })
-*/
+
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
 
@@ -170,10 +170,12 @@ const waterMaterial = new THREE.ShaderMaterial({
 const water = new THREE.Mesh(waterGeometry, waterMaterial)
 water.rotation.x = -Math.PI * 0.5
 water.position.y = -0.05
+water.receiveShadow = true
 scene.add(water)
 const water2 = new THREE.Mesh(waterGeometry2, waterMaterial)
 water2.rotation.x = -Math.PI * 0.5
 water2.position.y = -0.05
+water2.receiveShadow = true
 scene.add(water2)
 
 /**
@@ -226,15 +228,26 @@ const updateAllMaterials = () => {
  * Lights
  */
 
-const rectAreaLight = new THREE.RectAreaLight('white', 2, 1, 1)
-rectAreaLight.position.x = -5
-rectAreaLight.position.y = 5
-rectAreaLight.position.z = -6.4
-rectAreaLight.width = 5
-rectAreaLight.height = 5
-rectAreaLight.lookAt(new THREE.Vector3())
-scene.add(rectAreaLight)
 
+
+
+ const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+ directionalLight.position.set(0.25, 3, - 2.25)
+ directionalLight.castShadow = true
+ directionalLight.shadow.mapSize.set(1024, 1024)
+ directionalLight.shadow.normalBias = 0.05
+ directionalLight.intensity = 1.5
+ scene.add(directionalLight)
+
+ gui.add(directionalLight, 'intensity').min(0).max(10).step(0.001).name('lightIntensity')
+gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001).name('lightX')
+gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001).name('lightY')
+gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001).name('lightZ')
+
+/* 
+const helper = new THREE.DirectionalLightHelper( directionalLight, 5 );
+scene.add( helper );
+*/
 /**
  * Loaders
  */
@@ -263,9 +276,7 @@ bakedTexture.encoding = THREE.sRGBEncoding
  * Materials
  */
 // Baked material
-const bakedMaterial = new THREE.MeshBasicMaterial({
-    map: bakedTexture
-})
+
 
 // Pole light material
 const poleLightMaterial = new THREE.MeshBasicMaterial({
@@ -276,19 +287,35 @@ const poleLightMaterial = new THREE.MeshBasicMaterial({
  * Model
  */
 //Base model
+
+let farm = ''
+
 gltfLoader.load(
-    'farmingSimulator.glb',
+    'farming.glb',
     (gltf) => {
-        const bakedMesh = gltf.scene.children.find(child => child.name === 'baked')
-        const poleLight = gltf.scene.children.find(child => child.name === 'poleLight')
-        bakedMesh.material = bakedMaterial
-        poleLight.material = poleLightMaterial
+        gltf.scene.castShadow = true
         gltf.scene.receiveShadow = true
         scene.add(gltf.scene)
+        farm = gltf.scene
+        updateAllMaterials()
+      
+    }
+)
 
+gltfLoader.load(
+    'shop.gltf',
+    (gltf) => {
+
+        gltf.scene.scale.set(0.008, 0.008, 0.008)
+        gltf.scene.position.y = -0.04
+        gltf.scene.position.x = -1.84
+        gltf.scene.position.z = 2.03
+        gltf.scene.rotation.y = 2.81
+        scene.add(gltf.scene)
         updateAllMaterials()
     }
 )
+
 let robot = ''
 const robotproperities = {
     robotlvl: 1,
@@ -304,6 +331,7 @@ gltfLoader.load(
         robot = gltf.scene
         robot.scale.set(0.6, 0.6, 0.6)
         scene.add(robot)
+       //237
     }
 )
 
@@ -324,10 +352,12 @@ gltfLoader.load(
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
         gltf.scene.castShadow = true
+        
         salade1 = gltf.scene
         salade1.scale.set(0.6, 0.6, 0.6)
         scene.add(salade1)
-
+       
+        //229
 
 
     }
@@ -343,7 +373,8 @@ gltfLoader.load(
         salade2 = gltf.scene
         salade2.scale.set(0.6, 0.6, 0.6)
         scene.add(salade2)
-
+       
+        //230
 
     }
 )
@@ -359,6 +390,8 @@ gltfLoader.load(
         salade3 = gltf.scene
         salade3.scale.set(0.6, 0.6, 0.6)
         scene.add(salade3)
+       
+        //231
     }
 )
 
@@ -372,6 +405,8 @@ gltfLoader.load(
         salade4 = gltf.scene
         salade4.scale.set(0.6, 0.6, 0.6)
         scene.add(salade4)
+       
+        //232
     }
 )
 
@@ -385,6 +420,8 @@ gltfLoader.load(
         salade5 = gltf.scene
         salade5.scale.set(0.6, 0.6, 0.6)
         scene.add(salade5)
+        
+        //233
     }
 )
 
@@ -398,6 +435,8 @@ gltfLoader.load(
         salade6 = gltf.scene
         salade6.scale.set(0.6, 0.6, 0.6)
         scene.add(salade6)
+        
+        //234
     }
 )
 
@@ -412,8 +451,8 @@ gltfLoader.load(
         salade7 = gltf.scene
         salade7.scale.set(0.6, 0.6, 0.6)
         scene.add(salade7)
-
-
+        
+        //235
     }
 )
 
@@ -427,6 +466,9 @@ gltfLoader.load(
         salade8 = gltf.scene
         salade8.scale.set(0.6, 0.6, 0.6)
         scene.add(salade8)
+  
+
+        //236
     }
 )
 
@@ -467,13 +509,16 @@ window.addEventListener('click', (_event) => {
     let random = Math.floor(Math.random() * robotproperities.robotPrecision);
     if (sceneReady) {
         let timing = growth
-
+       
         if (currentIntersect) {
-
+           
+         
             //SALADE
             switch (currentIntersect.object.id) {
-                case 35:
+                
+                case 525: //
                     sndSaladCut.play()
+                    
                  switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
@@ -481,6 +526,7 @@ window.addEventListener('click', (_event) => {
                                 lblCollect.style.color = 'green'
                                 lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
+                              
 
                             } else {
                                 money = money - 0.10
@@ -495,7 +541,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 34:
+                case 524: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -518,7 +564,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 32:
+                case 527: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -541,7 +587,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 33:
+                case 526: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -563,7 +609,7 @@ window.addEventListener('click', (_event) => {
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                case 38:
+                case 530: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -585,30 +631,7 @@ window.addEventListener('click', (_event) => {
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                case 37:
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 39:
+                case 532: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -631,7 +654,30 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 36:
+                case 531://
+                    sndSaladCut.play()
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
+                                sndMoneyWin.play()
+
+                            } else {
+                                money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
+                            }
+                            break;
+                        default:
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
+                    }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+
+                    break;
+                case 529:
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -655,10 +701,8 @@ window.addEventListener('click', (_event) => {
 
                     break;
                     //ROBOT ARM
-                case 26:
-                    console.log("Robotic Arm ID: " + currentIntersect.object.id)
-                    console.log("Robot lvl: " + robotproperities.robotlvl)
-                    console.log(`Robot precision: ${robotproperities.robotlvl}/${robotproperities.robotPrecision}`)
+                case 240:
+                  
                     if (money >= 5) {
                         if (robotproperities.robotPrecision == 5) {
                             robotproperities.robotPrecision = 4
@@ -716,7 +760,7 @@ window.addEventListener('click', (_event) => {
                         }
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    console.log(robotproperities.robotPrecision)
+                  
             }
         }
     }
@@ -732,6 +776,9 @@ window.addEventListener('click', (_event) => {
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.outputEncoding = THREE.sRGBEncoding
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+renderer.physicallyCorrectLights = true
 // Clear color
 debugObject.clearColor = '#201919'
 renderer.setClearColor(debugObject.clearColor)
@@ -783,6 +830,7 @@ const points = [{
 ]
 
 
+
 /**
  * Animate
  */
@@ -791,6 +839,8 @@ const clock = new THREE.Clock()
 
 let currentIntersect = null
 let growth = 0.6
+let lightSpeed = 0;
+let lightRadius = 15
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
@@ -798,23 +848,28 @@ const tick = () => {
     // Update controls
     controls.update()
 
+    
+    lightSpeed += 0.005;   
+    directionalLight.position.x = lightRadius*Math.cos(lightSpeed) + 0;
+    directionalLight.position.y = lightRadius*Math.sin(lightSpeed) + 0;
+
     if (sceneReady) {
         if (robotproperities.robotPrecision <= 4) {
             switch (robotproperities.robotPrecision) {
                 case 4:
-                    money = money + elapsedTime / 40000
+                    money = money + elapsedTime / 20000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 3:
-                    money = money + elapsedTime / 35000
+                    money = money + elapsedTime / 15000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 2:
-                    money = money + elapsedTime / 30000
+                    money = money + elapsedTime / 12500
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 1:
-                    money = money + elapsedTime / 25000
+                    money = money + elapsedTime / 10000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
             }
@@ -872,7 +927,7 @@ const tick = () => {
         raycaster.setFromCamera(mouse, camera)
 
         const objectsToTest = [salade1, salade2, salade3, salade4, salade5, salade6, salade7, salade8, robot]
-        const intersects = raycaster.intersectObjects(objectsToTest)
+        const intersects = raycaster.intersectObjects(objectsToTest, true)
 
         if (intersects.length) {
             if ((!currentIntersect)) {
