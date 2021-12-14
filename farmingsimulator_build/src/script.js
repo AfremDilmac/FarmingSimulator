@@ -43,7 +43,7 @@ sndMoneyWin.src = '/sound/money_win.mp3'
 let sndSaladCut = new Audio()
 sndSaladCut.src = '/sound/salad_cut.mp3'
 
-let money = 0;
+let money = 5;
 let robotlvl = 1;
 
 /**
@@ -783,7 +783,6 @@ const points = [{
 ]
 
 
-
 /**
  * Animate
  */
@@ -803,19 +802,19 @@ const tick = () => {
         if (robotproperities.robotPrecision <= 4) {
             switch (robotproperities.robotPrecision) {
                 case 4:
-                    money = money + elapsedTime / 20000
+                    money = money + elapsedTime / 40000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 3:
-                    money = money + elapsedTime / 15000
+                    money = money + elapsedTime / 35000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 2:
-                    money = money + elapsedTime / 12500
+                    money = money + elapsedTime / 30000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 1:
-                    money = money + elapsedTime / 10000
+                    money = money + elapsedTime / 25000
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
             }
