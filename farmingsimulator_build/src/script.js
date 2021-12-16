@@ -43,7 +43,7 @@ sndMoneyWin.src = '/sound/money_win.mp3'
 let sndSaladCut = new Audio()
 sndSaladCut.src = '/sound/salad_cut.mp3'
 
-let money = 10;
+let money = 5;
 let robotlvl = 1;
 
 /**
@@ -227,22 +227,29 @@ const updateAllMaterials = () => {
 /**
  * Lights
  */
+// Pole light material
 
+ const directionalLightDay = new THREE.DirectionalLight('#ffffff', 1)
+ directionalLightDay.position.set(0.25, 3, - 2.25)
+ directionalLightDay.castShadow = true
+ directionalLightDay.shadow.mapSize.set(1024, 1024)
+ directionalLightDay.shadow.normalBias = 0.05
+ directionalLightDay.intensity = 1.5
+ scene.add(directionalLightDay)
 
-
-
- const directionalLight = new THREE.DirectionalLight('#ffffff', 1)
- directionalLight.position.set(0.25, 3, - 2.25)
- directionalLight.castShadow = true
- directionalLight.shadow.mapSize.set(1024, 1024)
- directionalLight.shadow.normalBias = 0.05
- directionalLight.intensity = 1.5
- scene.add(directionalLight)
-
- gui.add(directionalLight, 'intensity').min(0).max(10).step(0.001).name('lightIntensity')
-gui.add(directionalLight.position, 'x').min(- 5).max(5).step(0.001).name('lightX')
-gui.add(directionalLight.position, 'y').min(- 5).max(5).step(0.001).name('lightY')
-gui.add(directionalLight.position, 'z').min(- 5).max(5).step(0.001).name('lightZ')
+ const ambientLight = new THREE.AmbientLight(0xffffff, 0.15)
+ scene.add(ambientLight)
+ 
+ const poleLight = new THREE.PointLight(0xff9000, 0.5, 10, 2)
+ poleLight.position.set(-2.548, 0.711, 1.167)
+ scene.add(poleLight)
+ 
+ 
+ 
+ const doorLight = new THREE.PointLight(0xffffff, 0.5, 10, 2)
+ doorLight.position.set(-1.701, 0.646, 2.667)
+ scene.add(doorLight)
+ 
 
 /* 
 const helper = new THREE.DirectionalLightHelper( directionalLight, 5 );
@@ -275,14 +282,6 @@ bakedTexture.encoding = THREE.sRGBEncoding
 /**
  * Materials
  */
-// Baked material
-
-
-// Pole light material
-const poleLightMaterial = new THREE.MeshBasicMaterial({
-    color: 0xffffe5
-})
-
 /**
  * Model
  */
@@ -303,7 +302,18 @@ gltfLoader.load(
 )
 
 gltfLoader.load(
-    'shop.gltf',
+    '/polelight/polelight.glb',
+    (gltf) => {
+        gltf.scene.castShadow = true
+        gltf.scene.receiveShadow = true
+        gltf.scene.position.set(-4.113, -0.9, 0)
+        scene.add(gltf.scene)
+        updateAllMaterials()
+    }
+)
+
+gltfLoader.load(
+    'shop/shop.gltf',
     (gltf) => {
 
         gltf.scene.scale.set(0.008, 0.008, 0.008)
@@ -315,6 +325,20 @@ gltfLoader.load(
         updateAllMaterials()
     }
 )
+
+// let sun = ''
+// gltfLoader.load(
+//     'sun/scene.gltf',
+//     (gltf) => {
+
+      
+//         gltf.scene.position.y = 5
+//         gltf.scene.scale.set(0.008, 0.008, 0.008)
+//         sun = gltf.scene
+//         scene.add(sun)
+//         updateAllMaterials()
+//     }
+// )
 
 let robot = ''
 const robotproperities = {
@@ -512,13 +536,15 @@ window.addEventListener('click', (_event) => {
        
         if (currentIntersect) {
            
-         
+            console.log(currentIntersect.object.id)
+
             //SALADE
             switch (currentIntersect.object.id) {
-                
-                case 525: //
+
+                case 535: //
                     sndSaladCut.play()
-                    
+                   
+                    console.log('click')
                  switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
@@ -541,7 +567,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 524: //
+                case 537: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -564,7 +590,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 527: //
+                case 538: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -587,7 +613,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 526: //
+                case 536: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -609,7 +635,7 @@ window.addEventListener('click', (_event) => {
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                case 530: //
+                case 543: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -631,30 +657,7 @@ window.addEventListener('click', (_event) => {
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                case 532: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 531://
+                case 541: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -677,7 +680,30 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 529:
+                case 542://
+                    sndSaladCut.play()
+                    switch (random) {
+                        case 1:
+                            if (timing >= 1.05 && timing <= 1.44) {
+                                money = money + 0.50
+                                lblCollect.style.color = 'green'
+                                lblCollect.innerHTML = 'Collected'
+                                sndMoneyWin.play()
+
+                            } else {
+                                money = money - 0.10
+                                lblCollect.style.color = 'red'
+                                lblCollect.innerHTML = 'Too fast -0.10'
+                            }
+                            break;
+                        default:
+                            lblCollect.style.color = 'white'
+                            lblCollect.innerHTML = 'Miss'
+                    }
+                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+
+                    break;
+                case 539:
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -701,7 +727,7 @@ window.addEventListener('click', (_event) => {
 
                     break;
                     //ROBOT ARM
-                case 240:
+                case 251:
                   
                     if (money >= 5) {
                         if (robotproperities.robotPrecision == 5) {
@@ -829,7 +855,31 @@ const points = [{
     }
 ]
 
+/**
+ * Particles
+ */
 
+
+//  const particlesCount = 200
+//  const positions = new Float32Array(particlesCount * 3)
+//  for(let i = 0; i < particlesCount; i++)
+//  {
+//      positions[i * 3 + 0] = (Math.random() - 0.5) * 10
+//      positions[i * 3 + 1] = 2 * 0.5 - Math.random() * -2  * 4
+//      positions[i * 3 + 2] = (Math.random() - 0.5) * 10
+//  }
+
+// // Material
+// const particlesMaterial = new THREE.PointsMaterial({
+//     color: '#ffeded',
+//     sizeAttenuation: true,
+//     size: 0.03
+// })
+// const particlesGeometry = new THREE.BufferGeometry()
+// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+// // Points
+// const particles = new THREE.Points(particlesGeometry, particlesMaterial)
+// scene.add(particles)
 
 /**
  * Animate
@@ -841,35 +891,37 @@ let currentIntersect = null
 let growth = 0.6
 let lightSpeed = 0;
 let lightRadius = 15
+let automaticGain = 0.05
 
 const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // Update controls
     controls.update()
-
-    
+        
     lightSpeed += 0.005;   
-    directionalLight.position.x = lightRadius*Math.cos(lightSpeed) + 0;
-    directionalLight.position.y = lightRadius*Math.sin(lightSpeed) + 0;
+    automaticGain += 0.000001
+    directionalLightDay.position.x = lightRadius*Math.cos(lightSpeed) + 0;
+    directionalLightDay.position.y = lightRadius*Math.sin(lightSpeed) + 0;
+
 
     if (sceneReady) {
         if (robotproperities.robotPrecision <= 4) {
             switch (robotproperities.robotPrecision) {
                 case 4:
-                    money = money + elapsedTime / 20000
+                    money = money + (automaticGain / 1000)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 3:
-                    money = money + elapsedTime / 15000
+                    money = money + (automaticGain / 800)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 2:
-                    money = money + elapsedTime / 12500
+                    money = money + (automaticGain / 600)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
                     case 1:
-                    money = money + elapsedTime / 10000
+                    money = money + (automaticGain / 500)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
             }

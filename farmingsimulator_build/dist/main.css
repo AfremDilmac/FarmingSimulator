@@ -65,6 +65,12 @@ body
     left: 60%;
 }
 
+.collect
+{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+}
 
 .pointmoney .labelmoney{
     position: absolute;
@@ -123,6 +129,27 @@ body
     transform: scale(0, 0);
     transition: transform 0.3s;
 }
+
+.collect .labelcollect
+{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 160px;
+    height: 40px;
+    border-radius: 5%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
 
 .point .text
 {
@@ -225,6 +252,7 @@ body
     opacity: 1;
 }
 
+
 .point:hover .textr
 {
     opacity: 1;
@@ -245,6 +273,10 @@ body
 
 .pointrobot.visible .labelrobot
 {
+    transform: scale(1, 1);
+}
+
+.collect.visible .labelcollect{
     transform: scale(1, 1);
 }
 
