@@ -1,20 +1,14 @@
 import './style.css'
 import * as dat from 'lil-gui'
 import * as THREE from 'three'
-import {
-    OrbitControls
-} from 'three/examples/jsm/controls/OrbitControls.js'
-import {
-    GLTFLoader
-} from 'three/examples/jsm/loaders/GLTFLoader.js'
-import {
-    DRACOLoader
-} from 'three/examples/jsm/loaders/DRACOLoader.js'
-import {
-    gsap
-} from 'gsap'
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
+import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'  
+import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js'
+import {gsap} from 'gsap'
 import waterVertexShader from './shaders/water/vertex.glsl'
 import waterFragmentShader from './shaders/water/fragment.glsl'
+
+
 
 /**
  * Html JS link
@@ -45,6 +39,8 @@ sndSaladCut.src = '/sound/salad_cut.mp3'
 
 let money = 5;
 let robotlvl = 1;
+let mixer = null;
+
 
 /**
  * Loaders
@@ -73,8 +69,8 @@ const loadingManager = new THREE.LoadingManager(
 
         window.setTimeout(() => {
             sceneReady = true
-           
-            
+
+
         }, 2000)
     },
 
@@ -86,9 +82,9 @@ const loadingManager = new THREE.LoadingManager(
     }
 )
 
-sndBackground.addEventListener("ended", function(){
+sndBackground.addEventListener("ended", function () {
     sndBackground.currentTime = 0;
-   
+
 });
 
 /**
@@ -229,27 +225,27 @@ const updateAllMaterials = () => {
  */
 // Pole light material
 
- const directionalLightDay = new THREE.DirectionalLight('#ffffff', 1)
- directionalLightDay.position.set(0.25, 3, - 2.25)
- directionalLightDay.castShadow = true
- directionalLightDay.shadow.mapSize.set(1024, 1024)
- directionalLightDay.shadow.normalBias = 0.05
- directionalLightDay.intensity = 1.5
- scene.add(directionalLightDay)
+const directionalLightDay = new THREE.DirectionalLight('#ffffff', 1)
+directionalLightDay.position.set(0.25, 3, -2.25)
+directionalLightDay.castShadow = true
+directionalLightDay.shadow.mapSize.set(1024, 1024)
+directionalLightDay.shadow.normalBias = 0.05
+directionalLightDay.intensity = 1.5
+scene.add(directionalLightDay)
 
- const ambientLight = new THREE.AmbientLight(0xffffff, 0.15)
- scene.add(ambientLight)
- 
- const poleLight = new THREE.PointLight(0xff9000, 0.5, 10, 2)
- poleLight.position.set(-2.548, 0.711, 1.167)
- scene.add(poleLight)
- 
- 
- 
- const doorLight = new THREE.PointLight(0xffffff, 0.5, 10, 2)
- doorLight.position.set(-1.701, 0.646, 2.667)
- scene.add(doorLight)
- 
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.15)
+scene.add(ambientLight)
+
+const poleLight = new THREE.PointLight(0xff9000, 0.5, 10, 2)
+poleLight.position.set(-2.548, 0.711, 1.167)
+scene.add(poleLight)
+
+
+
+const doorLight = new THREE.PointLight(0xffffff, 0.5, 10, 2)
+doorLight.position.set(-1.701, 0.646, 2.667)
+scene.add(doorLight)
+
 
 /* 
 const helper = new THREE.DirectionalLightHelper( directionalLight, 5 );
@@ -258,8 +254,7 @@ scene.add( helper );
 /**
  * Loaders
  */
-// Texture loader
-const textureLoader = new THREE.TextureLoader()
+
 
 // Draco loader
 const dracoLoader = new DRACOLoader()
@@ -269,23 +264,26 @@ dracoLoader.setDecoderPath('draco/')
 const gltfLoader = new GLTFLoader(loadingManager)
 gltfLoader.setDRACOLoader(dracoLoader)
 
-/**
- * Textures
- */
-const bakedTexture = textureLoader.load('baked.jpg')
-bakedTexture.flipY = false
-bakedTexture.encoding = THREE.sRGBEncoding
+
 /**
  * Object
  */
+let afrem = ''
+ gltfLoader.load(
+    '/models/AFREM.glb',
+    (gltf) =>
+    {
+      
+        gltf.scene.position.y = 3
+        scene.add(gltf.scene) 
 
-/**
- * Materials
- */
-/**
- * Model
- */
-//Base model
+        mixer = new THREE.AnimationMixer(gltf.scene)
+        const action = mixer.clipAction(gltf.animations[1]) //0 = dance and 1 == wave
+        action.play()
+
+        afrem = gltf.scene 
+    }
+)
 
 let farm = ''
 
@@ -297,7 +295,7 @@ gltfLoader.load(
         scene.add(gltf.scene)
         farm = gltf.scene
         updateAllMaterials()
-      
+
     }
 )
 
@@ -331,7 +329,7 @@ gltfLoader.load(
 //     'sun/scene.gltf',
 //     (gltf) => {
 
-      
+
 //         gltf.scene.position.y = 5
 //         gltf.scene.scale.set(0.008, 0.008, 0.008)
 //         sun = gltf.scene
@@ -355,7 +353,7 @@ gltfLoader.load(
         robot = gltf.scene
         robot.scale.set(0.6, 0.6, 0.6)
         scene.add(robot)
-       //237
+        //237
     }
 )
 
@@ -376,11 +374,11 @@ gltfLoader.load(
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
         gltf.scene.castShadow = true
-        
+
         salade1 = gltf.scene
         salade1.scale.set(0.6, 0.6, 0.6)
         scene.add(salade1)
-       
+
         //229
 
 
@@ -397,7 +395,7 @@ gltfLoader.load(
         salade2 = gltf.scene
         salade2.scale.set(0.6, 0.6, 0.6)
         scene.add(salade2)
-       
+
         //230
 
     }
@@ -414,7 +412,7 @@ gltfLoader.load(
         salade3 = gltf.scene
         salade3.scale.set(0.6, 0.6, 0.6)
         scene.add(salade3)
-       
+
         //231
     }
 )
@@ -429,7 +427,7 @@ gltfLoader.load(
         salade4 = gltf.scene
         salade4.scale.set(0.6, 0.6, 0.6)
         scene.add(salade4)
-       
+
         //232
     }
 )
@@ -444,7 +442,7 @@ gltfLoader.load(
         salade5 = gltf.scene
         salade5.scale.set(0.6, 0.6, 0.6)
         scene.add(salade5)
-        
+
         //233
     }
 )
@@ -459,7 +457,7 @@ gltfLoader.load(
         salade6 = gltf.scene
         salade6.scale.set(0.6, 0.6, 0.6)
         scene.add(salade6)
-        
+
         //234
     }
 )
@@ -475,7 +473,7 @@ gltfLoader.load(
         salade7 = gltf.scene
         salade7.scale.set(0.6, 0.6, 0.6)
         scene.add(salade7)
-        
+
         //235
     }
 )
@@ -490,7 +488,7 @@ gltfLoader.load(
         salade8 = gltf.scene
         salade8.scale.set(0.6, 0.6, 0.6)
         scene.add(salade8)
-  
+
 
         //236
     }
@@ -533,9 +531,9 @@ window.addEventListener('click', (_event) => {
     let random = Math.floor(Math.random() * robotproperities.robotPrecision);
     if (sceneReady) {
         let timing = growth
-       
+
         if (currentIntersect) {
-           
+
             console.log(currentIntersect.object.id)
 
             //SALADE
@@ -543,16 +541,16 @@ window.addEventListener('click', (_event) => {
 
                 case 535: //
                     sndSaladCut.play()
-                   
+
                     console.log('click')
-                 switch (random) {
+                    switch (random) {
                         case 1:
                             if (timing >= 1.05 && timing <= 1.44) {
                                 money = money + 0.50
                                 lblCollect.style.color = 'green'
                                 lblCollect.innerHTML = 'Collected'
                                 sndMoneyWin.play()
-                              
+
 
                             } else {
                                 money = money - 0.10
@@ -680,7 +678,7 @@ window.addEventListener('click', (_event) => {
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
 
                     break;
-                case 542://
+                case 542: //
                     sndSaladCut.play()
                     switch (random) {
                         case 1:
@@ -728,7 +726,7 @@ window.addEventListener('click', (_event) => {
                     break;
                     //ROBOT ARM
                 case 251:
-                  
+
                     if (money >= 5) {
                         if (robotproperities.robotPrecision == 5) {
                             robotproperities.robotPrecision = 4
@@ -786,7 +784,7 @@ window.addEventListener('click', (_event) => {
                         }
                     }
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                  
+
             }
         }
     }
@@ -795,7 +793,7 @@ window.addEventListener('click', (_event) => {
 /**
  * Renderer
  */
- const renderer = new THREE.WebGLRenderer({
+const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     antialias: true
 })
@@ -813,8 +811,12 @@ renderer.setClearColor(debugObject.clearColor)
 /**
  * Camera
  */
-// Base camera
-const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+ const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+//START CAMERA INTRODUCTION
+
+
+// Base camera 3d model
+
 camera.position.x = -5
 camera.position.y = 5
 camera.position.z = -6.4
@@ -822,14 +824,14 @@ scene.add(camera)
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement)
-controls.addEventListener( 'change', render );
+controls.addEventListener('change', render);
 controls.minPolarAngle = 0;
-controls.maxPolarAngle =  Math.PI * 0.4;
+controls.maxPolarAngle = Math.PI * 0.4;
 controls.enableDamping = true
 
 function render() {
 
-    renderer.render( scene, camera );
+    renderer.render(scene, camera);
 
 }
 
@@ -890,6 +892,7 @@ const clock = new THREE.Clock()
 let currentIntersect = null
 let growth = 0.6
 let lightSpeed = 0;
+let dancespeed = 5;
 let lightRadius = 15
 let automaticGain = 0.05
 
@@ -898,11 +901,11 @@ const tick = () => {
 
     // Update controls
     controls.update()
-        
-    lightSpeed += 0.005;   
+
+    lightSpeed += 0.005;
     automaticGain += 0.000001
-    directionalLightDay.position.x = lightRadius*Math.cos(lightSpeed) + 0;
-    directionalLightDay.position.y = lightRadius*Math.sin(lightSpeed) + 0;
+    directionalLightDay.position.x = lightRadius * Math.cos(lightSpeed) + 0;
+    directionalLightDay.position.y = lightRadius * Math.sin(lightSpeed) + 0;
 
 
     if (sceneReady) {
@@ -912,15 +915,15 @@ const tick = () => {
                     money = money + (automaticGain / 1000)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                    case 3:
+                case 3:
                     money = money + (automaticGain / 800)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                    case 2:
+                case 2:
                     money = money + (automaticGain / 600)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
-                    case 1:
+                case 1:
                     money = money + (automaticGain / 500)
                     lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
                     break;
@@ -959,6 +962,11 @@ const tick = () => {
             salade8.scale.set(growth, growth, growth)
         }
 
+        if(mixer)
+        {
+            mixer.update(0.01)
+        }
+
 
         for (const point of points) {
             const screenPosition = point.position.clone()
@@ -992,7 +1000,7 @@ const tick = () => {
             currentIntersect = null
         }
     }
- 
+
 
     // Render
     renderer.render(scene, camera)
