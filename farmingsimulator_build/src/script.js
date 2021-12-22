@@ -24,10 +24,6 @@ const lblCollect = document.querySelector('.labelcollect')
  * Sounds
  */
 
-let sndBackground = new Audio()
-sndBackground.src = '/sound/background.mp3'
-// sndBackground.play()
-
 let sndLevelUp = new Audio()
 sndLevelUp.src = '/sound/levelup.mp3'
 
@@ -82,10 +78,6 @@ const loadingManager = new THREE.LoadingManager(
     }
 )
 
-sndBackground.addEventListener("ended", function () {
-    sndBackground.currentTime = 0;
-
-});
 
 /**
  * Base
@@ -274,14 +266,19 @@ let afrem = ''
     (gltf) =>
     {
       
-        gltf.scene.position.y = 3
-        scene.add(gltf.scene) 
+
+      
 
         mixer = new THREE.AnimationMixer(gltf.scene)
         const action = mixer.clipAction(gltf.animations[1]) //0 = dance and 1 == wave
         action.play()
 
         afrem = gltf.scene 
+        
+afrem.position.x = -5
+afrem.position.y = -20.5
+afrem.position.z = -11
+scene.add(afrem) 
     }
 )
 
@@ -533,258 +530,94 @@ window.addEventListener('click', (_event) => {
         let timing = growth
 
         if (currentIntersect) {
+            console.log("salade 1 id:" + salade1.id)
+            console.log(salade1)
+            console.log(currentIntersect.object)
 
-            console.log(currentIntersect.object.id)
+            if (currentIntersect.object.name == '10187_LettuceBibb_v1-L2') {
+                sndSaladCut.play()
 
-            //SALADE
-            switch (currentIntersect.object.id) {
-
-                case 535: //
-                    sndSaladCut.play()
-
-                    console.log('click')
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
+                console.log('click')
+                switch (random) {
+                    case 1:
+                        if (timing >= 1.05 && timing <= 1.44) {
+                            money = money + 0.50
+                            lblCollect.style.color = 'green'
+                            lblCollect.innerHTML = 'Collected'
+                            sndMoneyWin.play()
 
 
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 537: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 538: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 536: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    break;
-                case 543: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-                    break;
-                case 541: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 542: //
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                case 539:
-                    sndSaladCut.play()
-                    switch (random) {
-                        case 1:
-                            if (timing >= 1.05 && timing <= 1.44) {
-                                money = money + 0.50
-                                lblCollect.style.color = 'green'
-                                lblCollect.innerHTML = 'Collected'
-                                sndMoneyWin.play()
-
-                            } else {
-                                money = money - 0.10
-                                lblCollect.style.color = 'red'
-                                lblCollect.innerHTML = 'Too fast -0.10'
-                            }
-                            break;
-                        default:
-                            lblCollect.style.color = 'white'
-                            lblCollect.innerHTML = 'Miss'
-                    }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
-
-                    break;
-                    //ROBOT ARM
-                case 251:
-
-                    if (money >= 5) {
-                        if (robotproperities.robotPrecision == 5) {
-                            robotproperities.robotPrecision = 4
-                            money = money - 5
-                            robot.scale.set(0.7, 0.7, 0.7)
-                            robotlvl = 2
-                            descriptionRobot.innerHTML = 'Upgrade cost €10'
-                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 25% <br> Speed: 25%'
-                            robotproperities.robotLvlUp = true
-                            sndLevelUp.play()
-
+                        } else {
+                            money = money - 0.10
+                            lblCollect.style.color = 'red'
+                            lblCollect.innerHTML = 'Too fast -0.10'
                         }
-                    }
-                    if (money >= 10) {
-                        if (robotproperities.robotPrecision == 4) {
-                            robotproperities.robotPrecision = 3
-                            money = money - 10
-                            robot.scale.set(0.8, 0.8, 0.8)
-                            robotlvl = 3
-                            descriptionRobot.innerHTML = 'Upgrade cost €20'
-                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 50% <br> Speed: 50%'
-                            robotproperities.robotLvlUp = true
-                            sndLevelUp.play()
+                        break;
+                    default:
+                        lblCollect.style.color = 'white'
+                        lblCollect.innerHTML = 'Miss'
+                }
+                lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+            }
+            if(currentIntersect.object.name == 'link_1')
+            {
+                if (money >= 5) {
+                    if (robotproperities.robotPrecision == 5) {
+                        robotproperities.robotPrecision = 4
+                        money = money - 5
+                        robot.scale.set(0.7, 0.7, 0.7)
+                        robotlvl = 2
+                        descriptionRobot.innerHTML = 'Upgrade cost €10'
+                        lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        lblRobotPrecision.innerHTML = 'Precision: 25% <br> Speed: 25%'
+                        robotproperities.robotLvlUp = true
+                        sndLevelUp.play()
 
-                        }
                     }
-                    if (money >= 20) {
-                        if (robotproperities.robotPrecision == 3) {
-                            robotproperities.robotPrecision = 2
-                            money = money - 20
-                            robot.scale.set(0.9, 0.9, 0.9)
-                            robotlvl = 4
-                            descriptionRobot.innerHTML = 'Upgrade cost €40'
-                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 75% <br> Speed: 75%'
-                            robotproperities.robotLvlUp = true
-                            sndLevelUp.play()
+                }
+                if (money >= 10) {
+                    if (robotproperities.robotPrecision == 4) {
+                        robotproperities.robotPrecision = 3
+                        money = money - 10
+                        robot.scale.set(0.8, 0.8, 0.8)
+                        robotlvl = 3
+                        descriptionRobot.innerHTML = 'Upgrade cost €20'
+                        lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        lblRobotPrecision.innerHTML = 'Precision: 50% <br> Speed: 50%'
+                        robotproperities.robotLvlUp = true
+                        sndLevelUp.play()
 
-                        }
                     }
-                    if (money >= 40) {
-                        if (robotproperities.robotPrecision == 2) {
-                            robotproperities.robotPrecision = 1
-                            money = money - 40
-                            robot.scale.set(1, 1, 1)
-                            robotlvl = 5
-                            descriptionRobot.innerHTML = 'MAX'
-                            lblRobot.innerHTML = `🔧 ${robotlvl}/5`
-                            lblRobotPrecision.innerHTML = 'Precision: 100% <br> Speed: 100%'
-                            robotproperities.robotLvlUp = true
-                            sndLevelUp.play()
+                }
+                if (money >= 20) {
+                    if (robotproperities.robotPrecision == 3) {
+                        robotproperities.robotPrecision = 2
+                        money = money - 20
+                        robot.scale.set(0.9, 0.9, 0.9)
+                        robotlvl = 4
+                        descriptionRobot.innerHTML = 'Upgrade cost €40'
+                        lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        lblRobotPrecision.innerHTML = 'Precision: 75% <br> Speed: 75%'
+                        robotproperities.robotLvlUp = true
+                        sndLevelUp.play()
 
-                        }
                     }
-                    lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
+                }
+                if (money >= 40) {
+                    if (robotproperities.robotPrecision == 2) {
+                        robotproperities.robotPrecision = 1
+                        money = money - 40
+                        robot.scale.set(1, 1, 1)
+                        robotlvl = 5
+                        descriptionRobot.innerHTML = 'MAX'
+                        lblRobot.innerHTML = `🔧 ${robotlvl}/5`
+                        lblRobotPrecision.innerHTML = 'Precision: 100% <br> Speed: 100%'
+                        robotproperities.robotLvlUp = true
+                        sndLevelUp.play()
 
+                    }
+                }
+                lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
             }
         }
     }
@@ -811,9 +644,10 @@ renderer.setClearColor(debugObject.clearColor)
 /**
  * Camera
  */
+//GENERAL CAMERA GAME
  const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 //START CAMERA INTRODUCTION
-
+const camera2 = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 
 // Base camera 3d model
 
@@ -821,6 +655,11 @@ camera.position.x = -5
 camera.position.y = 5
 camera.position.z = -6.4
 scene.add(camera)
+
+camera2.position.x = -5
+camera2.position.y = -20
+camera2.position.z = -6.4
+scene.add(camera2)
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement)
@@ -857,31 +696,6 @@ const points = [{
     }
 ]
 
-/**
- * Particles
- */
-
-
-//  const particlesCount = 200
-//  const positions = new Float32Array(particlesCount * 3)
-//  for(let i = 0; i < particlesCount; i++)
-//  {
-//      positions[i * 3 + 0] = (Math.random() - 0.5) * 10
-//      positions[i * 3 + 1] = 2 * 0.5 - Math.random() * -2  * 4
-//      positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-//  }
-
-// // Material
-// const particlesMaterial = new THREE.PointsMaterial({
-//     color: '#ffeded',
-//     sizeAttenuation: true,
-//     size: 0.03
-// })
-// const particlesGeometry = new THREE.BufferGeometry()
-// particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-// // Points
-// const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-// scene.add(particles)
 
 /**
  * Animate
@@ -1003,7 +817,7 @@ const tick = () => {
 
 
     // Render
-    renderer.render(scene, camera)
+    renderer.render(scene, camera2)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)
