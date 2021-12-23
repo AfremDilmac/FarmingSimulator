@@ -7,11 +7,3 @@
  * Club GreenSock members, the agreement issued with that membership.
  * @author: Jack Doyle, jack@greensock.com
 */
-
-/**
- * lil-gui
- * https://lil-gui.georgealways.com
- * @version 0.11.0
- * @author George Michael Brower
- * @license MIT
- */

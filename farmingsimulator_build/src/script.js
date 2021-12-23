@@ -19,6 +19,7 @@ const descriptionRobot = document.querySelector('.textrobot')
 const lblRobotPrecision = document.querySelector('.textr')
 const imgloader = document.querySelector('#loadingimage')
 const lblCollect = document.querySelector('.labelcollect')
+const gameReady = document.querySelector('.gameready')
 
 /**
  * Sounds
@@ -33,7 +34,7 @@ sndMoneyWin.src = '/sound/money_win.mp3'
 let sndSaladCut = new Audio()
 sndSaladCut.src = '/sound/salad_cut.mp3'
 
-let money = 5;
+let money = 4;
 let robotlvl = 1;
 let mixer = null;
 
@@ -59,13 +60,15 @@ const loadingManager = new THREE.LoadingManager(
             // Update loadingBarElement
             loadingBarElement.classList.add('ended')
             loadingBarElement.style.transform = ''
-            imgloader.style.display = 'none'
 
         }, 500)
 
         window.setTimeout(() => {
             sceneReady = true
+            const introtxt = document.querySelector('#introtxt')
+            introtxt.innerHTML = 'Hallo mijn naam is Afrem, welkom bij FarmingSimulator, druk op het scherm voor de uitleg'
 
+            
 
         }, 2000)
     },
@@ -85,9 +88,7 @@ const loadingManager = new THREE.LoadingManager(
 // Debug
 const debugObject = {}
 
-const gui = new dat.GUI({
-    width: 400
-})
+
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -261,19 +262,20 @@ gltfLoader.setDRACOLoader(dracoLoader)
  * Object
  */
 let afrem = ''
+let animation = ''
  gltfLoader.load(
     '/models/AFREM.glb',
     (gltf) =>
     {
       
 
-      
-
-        mixer = new THREE.AnimationMixer(gltf.scene)
-        const action = mixer.clipAction(gltf.animations[1]) //0 = dance and 1 == wave
+        animation = gltf
+        afrem = gltf.scene 
+        mixer = new THREE.AnimationMixer(afrem)
+        let action = mixer.clipAction(gltf.animations[1]) //0 = dance and 1 == wave
         action.play()
 
-        afrem = gltf.scene 
+        
         
 afrem.position.x = -5
 afrem.position.y = -20.5
@@ -307,6 +309,8 @@ gltfLoader.load(
     }
 )
 
+let shop = ''
+
 gltfLoader.load(
     'shop/shop.gltf',
     (gltf) => {
@@ -316,24 +320,11 @@ gltfLoader.load(
         gltf.scene.position.x = -1.84
         gltf.scene.position.z = 2.03
         gltf.scene.rotation.y = 2.81
+        shop = gltf.scene
         scene.add(gltf.scene)
         updateAllMaterials()
     }
 )
-
-// let sun = ''
-// gltfLoader.load(
-//     'sun/scene.gltf',
-//     (gltf) => {
-
-
-//         gltf.scene.position.y = 5
-//         gltf.scene.scale.set(0.008, 0.008, 0.008)
-//         sun = gltf.scene
-//         scene.add(sun)
-//         updateAllMaterials()
-//     }
-// )
 
 let robot = ''
 const robotproperities = {
@@ -342,6 +333,12 @@ const robotproperities = {
     robotUpgrade: 2,
     robotLvlUp: false
 }
+
+let gameIntro = true
+const gameProgress = {
+    progress: 1
+}
+
 
 //Robot Arm
 gltfLoader.load(
@@ -363,10 +360,14 @@ let salade6 = ''
 let salade7 = ''
 let salade8 = ''
 
+
 //Lettuce 
 gltfLoader.load(
     'lettuce.glb',
     (gltf) => {
+
+       
+
         gltf.scene.position.x = -2.36
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
@@ -376,118 +377,62 @@ gltfLoader.load(
         salade1.scale.set(0.6, 0.6, 0.6)
         scene.add(salade1)
 
-        //229
-
-
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-        gltf.scene.position.x = -1.45
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -2.28
-        gltf.scene.castShadow = true
-        salade2 = gltf.scene
+        
+        salade2 = gltf.scene.clone();
+        salade2.position.x = -1.45
+        salade2.position.y = 0
+        salade2.position.z = -2.28
+        salade2.castShadow = true
         salade2.scale.set(0.6, 0.6, 0.6)
         scene.add(salade2)
 
-        //230
-
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-
-        gltf.scene.position.x = -1.45
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -1.45
-        gltf.scene.castShadow = true
-        salade3 = gltf.scene
+        salade3 = gltf.scene.clone();
+        salade3.position.x = -1.45
+        salade3.position.y = 0
+        salade3.position.z = -1.45
+        salade3.castShadow = true
         salade3.scale.set(0.6, 0.6, 0.6)
         scene.add(salade3)
 
-        //231
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-        gltf.scene.position.x = -2.36
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -1.45
-        gltf.scene.castShadow = true
-        salade4 = gltf.scene
+        salade4 = gltf.scene.clone();
+        salade4.position.x = -2.36
+        salade4.position.y = 0
+        salade4.position.z = -1.45
+        salade4.castShadow = true
         salade4.scale.set(0.6, 0.6, 0.6)
         scene.add(salade4)
 
-        //232
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-        gltf.scene.position.x = 1.42
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -2.28
-        gltf.scene.castShadow = true
-        salade5 = gltf.scene
+        salade5 = gltf.scene.clone();
+        salade5.position.x = 1.42
+        salade5.position.y = 0
+        salade5.position.z = -2.28
+        salade5.castShadow = true
         salade5.scale.set(0.6, 0.6, 0.6)
         scene.add(salade5)
 
-        //233
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-        gltf.scene.position.x = 2.33
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -2.28
-        gltf.scene.castShadow = true
-        salade6 = gltf.scene
+        salade6 = gltf.scene.clone();
+        salade6.position.x = 2.33
+        salade6.position.y = 0
+        salade6.position.z = -2.28
+        salade6.castShadow = true
         salade6.scale.set(0.6, 0.6, 0.6)
         scene.add(salade6)
 
-        //234
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-
-        gltf.scene.position.x = 1.42
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -1.45
-        gltf.scene.castShadow = true
-        salade7 = gltf.scene
+        salade7 = gltf.scene.clone();
+        salade7.position.x = 1.42
+        salade7.position.y = 0
+        salade7.position.z = -1.45
+        salade7.castShadow = true
         salade7.scale.set(0.6, 0.6, 0.6)
         scene.add(salade7)
 
-        //235
-    }
-)
-
-gltfLoader.load(
-    'lettuce.glb',
-    (gltf) => {
-        gltf.scene.position.x = 2.35
-        gltf.scene.position.y = 0
-        gltf.scene.position.z = -1.45
-        gltf.scene.castShadow = true
-        salade8 = gltf.scene
+        salade8 = gltf.scene.clone();
+        salade8.position.x = 2.35
+        salade8.position.y = 0
+        salade8.position.z = -1.45
+        salade8.castShadow = true
         salade8.scale.set(0.6, 0.6, 0.6)
         scene.add(salade8)
-
-
-        //236
     }
 )
 
@@ -507,6 +452,9 @@ window.addEventListener('resize', () => {
     // Update camera
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
+
+    camera2.aspect = sizes.width / sizes.height
+    camera2.updateProjectionMatrix()
 
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
@@ -529,15 +477,34 @@ window.addEventListener('click', (_event) => {
     if (sceneReady) {
         let timing = growth
 
+       
+        switch (gameProgress.progress) {
+            case 1:
+                introtxt.innerHTML = 'Het doel is om sla te verzamelen, de boerderij en de robot te verbeteren!'
+            gameProgress.progress = 2
+                break;
+            case 2:
+                introtxt.innerHTML = 'Een beetje advies voordat je begint, zorg ervoor dat je de salade op het juiste moment verzamelt, zodat je niet te veel geld verliest'
+                gameProgress.progress = 3
+                break;
+            case 3:
+                introtxt.style.display = 'none'
+                cam = camera
+                gameReady.style.opacity = 1
+                break;
+        }
+
         if (currentIntersect) {
-            console.log("salade 1 id:" + salade1.id)
-            console.log(salade1)
-            console.log(currentIntersect.object)
+           
+
+            if (currentIntersect.object.name == 'Box012_20_-_Default_0') {
+                console.log("Coming soon..")
+            }
 
             if (currentIntersect.object.name == '10187_LettuceBibb_v1-L2') {
                 sndSaladCut.play()
 
-                console.log('click')
+                
                 switch (random) {
                     case 1:
                         if (timing >= 1.05 && timing <= 1.44) {
@@ -646,9 +613,10 @@ renderer.setClearColor(debugObject.clearColor)
  */
 //GENERAL CAMERA GAME
  const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+
 //START CAMERA INTRODUCTION
 const camera2 = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
-
+let cam = camera2
 // Base camera 3d model
 
 camera.position.x = -5
@@ -671,6 +639,7 @@ controls.enableDamping = true
 function render() {
 
     renderer.render(scene, camera);
+    renderer.render(scene, camera2);
 
 }
 
@@ -706,7 +675,6 @@ const clock = new THREE.Clock()
 let currentIntersect = null
 let growth = 0.6
 let lightSpeed = 0;
-let dancespeed = 5;
 let lightRadius = 15
 let automaticGain = 0.05
 
@@ -716,7 +684,7 @@ const tick = () => {
     // Update controls
     controls.update()
 
-    lightSpeed += 0.005;
+    lightSpeed += 0.0005;
     automaticGain += 0.000001
     directionalLightDay.position.x = lightRadius * Math.cos(lightSpeed) + 0;
     directionalLightDay.position.y = lightRadius * Math.sin(lightSpeed) + 0;
@@ -800,7 +768,7 @@ const tick = () => {
 
         raycaster.setFromCamera(mouse, camera)
 
-        const objectsToTest = [salade1, salade2, salade3, salade4, salade5, salade6, salade7, salade8, robot]
+        const objectsToTest = [salade1, salade2, salade3, salade4, salade5, salade6, salade7, salade8, robot, shop]
         const intersects = raycaster.intersectObjects(objectsToTest, true)
 
         if (intersects.length) {
@@ -817,7 +785,7 @@ const tick = () => {
 
 
     // Render
-    renderer.render(scene, camera2)
+    renderer.render(scene, cam)
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)

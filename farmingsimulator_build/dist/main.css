@@ -10,6 +10,10 @@ body
     overflow: hidden;
 }
 
+.gameready{
+    opacity: 0;
+}
+
 .webgl
 {
     position: fixed;
@@ -42,6 +46,15 @@ body
     position: absolute;
     top: 50%;
     left: 50%;
+}
+
+.intro{
+    position: absolute;
+    padding-left: 30px;
+    top: 35%;
+    text-align: center;
+    color: white;
+    
 }
 
 #loadingimage{
@@ -89,6 +102,21 @@ body
     font-size: 14px;
     transform: scale(0, 0);
     transition: transform 0.3s;
+}
+
+.intro .gameintro{
+
+}
+
+.labelintro{
+    position: relative;
+    top: 50%;  
+    width: 20em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 1rem;
+    text-align: center;
+    transform: translateY(-50%);   
 }
 
 .pointrobot .labelrobot{
@@ -150,7 +178,6 @@ body
     transition: transform 0.3s;
 }
 
-
 .point .text
 {
     position: absolute;
@@ -201,6 +228,8 @@ body
     font-size: 14px;
 }
 
+
+
 .pointrobot .textrobot{
     position: absolute;
     top: 30px;
@@ -227,6 +256,13 @@ body
 
 .point .textr
 {
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.intro .gameintro{
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
@@ -280,10 +316,24 @@ body
     transform: scale(1, 1);
 }
 
+
 .point.visible .label
 {
     transform: scale(1, 1);
 }
 
+/* Animation */
+.anim-typewriter{
+    animation: typewriter 12s steps(44) 1s 1 normal both,
+               blinkTextCursor 1200ms steps(44) infinite normal;
+  }
+  @keyframes typewriter{
+    from{width: 0;}
+    to{width: 20em;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+  }
 
 /*# sourceMappingURL=main.css.map*/
