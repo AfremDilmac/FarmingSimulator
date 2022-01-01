@@ -9,15 +9,31 @@
 <body>
 
     <main>
-        <h1>Sign in</h1>
-        <form>
-            <input id="login" class="username" type="text" name="username" placeholder="Username"><br>
-            <input id="pwd" class="password" type="password" name="password" placeholder="Password"><br>
-            
+        <div class="login-page">
+            <div class="form">
+                <div class="rgst">
+                    <h2>Register</h2>
+              <form class="register-form">
+                <input id="nameregister" type="text" placeholder="name"/>
+                <input id="pwdregister" type="password" placeholder="password"/>
+                <button id="btnTestRegister">create</button>
+                <p id="loginverification"></p>
+                <p class="message">Registered? <a id="lbllogin" href="#">Sign In</a></p>
+              </form>
+            </div>
+              <div class="lgn">
+              <form class="login-form">
+                <h2>Login</h2>
+                <input id="login" type="text" placeholder="username"/>
+                <input id="pwd" type="password" placeholder="password"/>
+                <p id="loginverification"></p>
+                <button id="btnTestLogin">login</button>
+                <p class="message">Not registered? <a id="lblregister" href="#">Create an account</a></p>
+              </form>
+            </div>
+            </div>
+          </div>
 
-        </form>
-        <button id="btnTestLogin">Sign in</button>
-        <p id="alert"></p>
     </main>
 <script src="users.js"></script>
 </body>
