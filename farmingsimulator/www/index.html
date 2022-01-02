@@ -29,7 +29,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta https-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
@@ -38,13 +38,34 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+        <main>
+          <audio src="612ae6093e6bbcd6" loop="true"></audio>
+            <div class="login-page">
+                <div class="form">
+                    <div class="rgst">
+                        <h2>Register</h2>
+                  <form class="register-form">
+                    <input id="nameregister" type="text" placeholder="name"/>
+                    <input id="pwdregister" type="password" placeholder="password"/>
+                    <button id="btnTestRegister">create</button>
+                    <p id="loginverification"></p>
+                    <p class="message">Registered? <a id="lbllogin" href="#">Sign In</a></p>
+                  </form>
+                </div>
+                  <div class="lgn">
+                  <form class="login-form">
+                    <h2>Login</h2>
+                    <input id="login" type="text" placeholder="username"/>
+                    <input id="pwd" type="password" placeholder="password"/>
+                    <p id="loginverification"></p>
+                    <button id="btnTestLogin">login</button>
+                    <p class="message">Not registered? <a id="lblregister" href="#">Create an account</a></p>
+                  </form>
+                </div>
+                </div>
+              </div>
+    
+        </main>
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
     </body>
