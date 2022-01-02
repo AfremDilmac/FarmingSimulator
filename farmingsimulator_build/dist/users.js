@@ -85,7 +85,7 @@
                     // list bevat minstens 1 itemproperty met waarde
                     // we nemen het eerste
                     console.log("Gebruikersgevens ok : ID = " + list[0].ID)
-                    window.location.href = "https://dilmac.be/farmingSimulator/dist/index.html";
+                    window.location.href = "game.html";
                 } else {
                     alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
                 }
