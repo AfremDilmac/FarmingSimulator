@@ -1,48 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="img/icon.png" type="image/x-icon">  
-    <title>FarmingSimulator</title>
+    <link rel="stylesheet" href="login.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="login.css">
+    <title>Sign in</title>
 </head>
+
 <body>
-    <audio src="/static/sound/background.mp3" loop></audio>
-    <canvas class="webgl"></canvas>
-    <div class="loading-bar"></div>
-    <div class="intro">
-        <div class="gameintro "></div>
-        <div class ="labelintro"><p id="introtxt"></p></div>
-    </div>
-    <div class="gameready">
-    <div class="point point-0 visible">
-        <div class="label">1</div>
-        <div class="text">Kapitaal: ..€ <br>
-                          Aantal salade verkocht: ..<br>
-                          Aantal winst: ..€</div>
-    </div>
-    <div class="point point-1 visible">
-        <div class="label">2</div>
-        <div class="text">Win €0.50<br>Lose €0.10</div>
-    </div>
-    <div class="point point-2 visible">
-        <div class="label">3</div>
-        <div class="text">Win €0.50<br>Lose €0.10</div>
-    </div>
-    <div class="point point-3 visible">
-        <div class="label">4</div>
-        <div class="textr">Precision: 16.66% Automatisation not working <br> 5€ for activation</div>
-    </div>
-    <div class="pointmoney point-4 visible">
-        <div class="labelmoney">💰 €4</div>
-    </div>
-    <div class="pointrobot point-5 visible">
-        <div class="labelrobot">🔧 1/5</div>
-        <div class="textrobot">Upgrade cost €5</div>
-    </div>
-    <div class="collect visible">
-        <div class="labelcollect ">Click salad to collect</div>
-    </div>
-</div>
+
+    <main>
+
+        <div class="login-page">
+            <div class="form">
+                <div class="rgst">
+                    <h2>Register</h2>
+              <form class="register-form">
+                <input id="nameregister" type="text" placeholder="name"/>
+                <input id="pwdregister" type="password" placeholder="password"/>
+                <button id="btnTestRegister">create</button>
+                <p class="message">Registered? <a id="lbllogin" href="#">Sign In</a></p>
+              </form>
+            </div>
+              <div class="lgn">
+              <form class="login-form">
+                <h2>Login</h2>
+                <input id="login" type="text" placeholder="username"/>
+                <input id="pwd" type="password" placeholder="password"/>
+                <p id="loginverification"></p>
+                <button id="btnTestLogin">login</button>
+                <p id="loginverification"></p>
+                <p class="message">Not registered? <a id="lblregister" href="#">Create an account</a></p>
+              </form>
+            </div>
+            </div>
+          </div>
+
+    </main>
+<script src="users.js"></script>
 </body>
+
 </html>

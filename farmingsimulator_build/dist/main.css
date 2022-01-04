@@ -1,0 +1,339 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+.gameready{
+    opacity: 0;
+}
+
+.webgl
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+}
+
+.loading-bar
+{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    height: 2px;
+    background: #ffffff;
+    transform: scaleX(0.3);
+    transform-origin: top left;
+    transition: transform 0.5s;
+}
+
+.loading-bar.ended
+{
+    transform: scaleX(0);
+    transform-origin: 100% 0;
+    transition: transform 1.5s ease-in-out;
+}
+
+.point
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.intro{
+    position: absolute;
+    padding-left: 30px;
+    top: 35%;
+    text-align: center;
+    color: white;
+    
+}
+
+#loadingimage{
+    position: absolute;
+    top: 5%;
+    left: 40%;
+    width: 20%;
+}
+
+.pointmoney
+{
+    position: absolute;
+    top: 3%;
+    left: 27%;
+}
+
+.pointrobot
+{
+    position: absolute;
+    top: 3%;
+    left: 60%;
+}
+
+.collect
+{
+    position: absolute;
+    top: 10%;
+    left: 40%;
+}
+
+.pointmoney .labelmoney{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
+.intro .gameintro{
+
+}
+
+.labelintro{
+    position: relative;
+    top: 50%;  
+    width: 20em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 1rem;
+    text-align: center;
+    transform: translateY(-50%);   
+}
+
+.pointrobot .labelrobot{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 10%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
+.point .label
+{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
+.collect .labelcollect
+{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 160px;
+    height: 40px;
+    border-radius: 5%;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+}
+
+.point .text
+{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.point .textr
+{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.pointmoney .textmoney{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+
+
+.pointrobot .textrobot{
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    width: 70px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
+.point .text
+{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.point .textr
+{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.intro .gameintro{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.pointmoney .textmoney{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.pointrobot .textrobot{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
+.point:hover .text
+{
+    opacity: 1;
+}
+
+
+.point:hover .textr
+{
+    opacity: 1;
+}
+
+.pointmoney:hover .textmoney{
+    opacity: 1;
+}
+
+.pointrobot:hover .textrobot{
+    opacity: 1;
+}
+
+.pointmoney.visible .labelmoney
+{
+    transform: scale(1, 1);
+}
+
+.pointrobot.visible .labelrobot
+{
+    transform: scale(1, 1);
+}
+
+.collect.visible .labelcollect{
+    transform: scale(1, 1);
+}
+
+
+.point.visible .label
+{
+    transform: scale(1, 1);
+}
+
+/* Animation */
+.anim-typewriter{
+    animation: typewriter 12s steps(44) 1s 1 normal both,
+               blinkTextCursor 1200ms steps(44) infinite normal;
+  }
+  @keyframes typewriter{
+    from{width: 0;}
+    to{width: 20em;}
+  }
+  @keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+  }
+
+/*# sourceMappingURL=main.css.map*/

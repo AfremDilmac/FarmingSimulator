@@ -1,3 +1,5 @@
+
+
 (function() {
     "use strict";
     /*jslint browser: true*/
@@ -5,7 +7,17 @@
     let baseApiAddress = "https://dilmac.be/farmingSimulator/src/php/";
     /* Vorige lijn aanpassen naar de locatie op jouw domein! */
 
-    let alertEl = document.getElementById("alert");
+    let alertEl = document.getElementById("loginverification");
+    const lblRegister = document.getElementById("lblregister"); 
+    const lblLogin = document.getElementById("lbllogin");
+    let registerForm = document.querySelector('.lgn');
+    let loginForm = document.querySelector('.rgst');
+    let btnCreateAccount = document.getElementById("btnTestRegister");
+    const nameRegister = document.getElementById("nameregister");
+    const passwordRegister = document.getElementById("pwdregister");
+    let unknown = 0;
+
+   
     let opties = {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
@@ -20,6 +32,23 @@
             	"Accept": "application/json"
             }*/
     };
+
+    lblRegister.addEventListener("click", function(){
+        registerForm.style.display = "none";
+        loginForm.style.display = "block";
+        
+    });
+
+    lblLogin.addEventListener("click", function(){
+        registerForm.style.display = "block";
+        loginForm.style.display = "none";
+       
+
+    })
+
+    btnCreateAccount.addEventListener("click", function(){
+
+    })
 
     function getApiGebruiker() {
         // een ONVEILIGE manier om gebruikersgegevens te testen
@@ -45,7 +74,7 @@
                 if (responseData.status < 200 || responseData.status > 299) {
                     // login faalde, boodschap weergeven
                     // Hier kan je ook een groter onderscheid maken tussen de verschillende vormen van login falen.
-                    console.log("Login mislukt : deze naam/paswoord combinatie bestaat niet")
+                    alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
                     // return, zodat de rest van de fetch niet verder uitgevoerd wordt
                     return;
                 }
@@ -57,13 +86,12 @@
                     // list bevat minstens 1 itemproperty met waarde
                     // we nemen het eerste
                     console.log("Gebruikersgevens ok : ID = " + list[0].ID)
-<<<<<<< HEAD:farmingsimulator_build/dist/users.js
+                    
                     window.location.href = "game.html";
-=======
-                    window.location.href = "/dist/index.html";
->>>>>>> parent of cd7e218 (commit register + login css):farmingsimulator_build/src/users.js
                 } else {
-                    console.log("Login failed : this login/password combination does not exist");
+                   
+                    unknown++;
+                    
                 }
 
             })
@@ -74,10 +102,47 @@
             });
     }
 
+    function addApiProducten() {
+        // de producten van de server opvragen en weergeven dmv de alerter functie
+        let url = baseApiAddress + "register.php";
+
+        // body data type must match "Content-Type" header
+        opties.body = JSON.stringify({
+            NAME: document.getElementById("nameregister").value,
+            PW: document.getElementById("pwdregister").value,
+            format: "json"
+        });
+        console.log(opties.body);
+        // test de api
+        fetch(url, opties)
+            .then(function(response) {
+                console.log('Response: ' + response.body);
+            })
+            .catch(function(err) {
+                console.log('Error: ' + err);
+            });
+    }
+
     // EventListeners
     document.getElementById("btnTestLogin").addEventListener("click", function(event) {
         
         getApiGebruiker();
+        if (unknown > 0) {
+            event.preventDefault()
+            alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
+        }
+
+    });
+
+    document.getElementById("btnTestRegister").addEventListener("click", function(event) {
+        if (nameRegister.value && passwordRegister.value != "") {
+            addApiProducten();            
+        }
+        else{
+            event.preventDefault()
+           
+        }
+       
     });
 
 
