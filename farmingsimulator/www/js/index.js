@@ -15,7 +15,6 @@
     let btnCreateAccount = document.getElementById("btnTestRegister");
     const nameRegister = document.getElementById("nameregister");
     const passwordRegister = document.getElementById("pwdregister");
-    let unknown = 0;
 
    
     let opties = {
@@ -86,12 +85,9 @@
                     // list bevat minstens 1 itemproperty met waarde
                     // we nemen het eerste
                     console.log("Gebruikersgevens ok : ID = " + list[0].ID)
-                    
                     window.location.href = "game.html";
                 } else {
-                   
-                    unknown++;
-                    
+                    alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
                 }
 
             })
@@ -127,11 +123,6 @@
     document.getElementById("btnTestLogin").addEventListener("click", function(event) {
         
         getApiGebruiker();
-        if (unknown > 0) {
-            event.preventDefault()
-            alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
-        }
-
     });
 
     document.getElementById("btnTestRegister").addEventListener("click", function(event) {
@@ -140,7 +131,7 @@
         }
         else{
             event.preventDefault()
-           
+            alertEl.innerHTML = "name and password cannot be empty"
         }
        
     });
