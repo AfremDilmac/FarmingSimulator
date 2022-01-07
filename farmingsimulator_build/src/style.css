@@ -379,6 +379,96 @@ body
     transform: scale(1, 1);
 }
 
+.shop{
+    background-color: rgb(69, 160, 69);
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    top: 20%;
+    border: 4px solid green;
+    border-radius: 5px;
+    font-family: Helvetica, Arial, sans-serif;
+    display: none;
+}
+
+.shopitems button{
+    height: 30px;
+    border-radius: 5px;
+    width: 100px;
+    background-color:rgb(9, 109, 9);
+    border: 2px black;
+}
+
+.shop #using button{
+    background-color: gray;
+} 
+
+.shop .shopitems{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.shop .Item1, .shop .Item2, .shop .Item3, .shop .Item4{
+    text-align: center;
+    
+}
+
+.shopitems h3, .shopitems p{
+    text-align: center;
+}
+
+.shopitems button{
+    color: white;
+    margin-bottom: 2rem;
+}
+
+.shop img{
+    width: 200px;
+}
+
+
+.shop h2{
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+.shop p{
+    color: white;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.shop .Item1{
+    border: 2px rgb(53, 126, 53);
+}
+
+.shop-header{
+    display: flex;
+}
+
+.shop-header h2{
+    flex-grow: 4;
+}
+
+.shop-header button{
+    width: 40px;
+    height: 40px;
+    margin-top: 0.5rem;
+    margin-right: 0.5rem;
+    background: red;
+    color: white;
+    border-radius: 3px;
+    border: 2px solid black;
+    font-size:0.6rem;
+    font-weight: bold;
+}
+
 
 /* Animation */
 .anim-typewriter{
@@ -400,4 +490,31 @@ body
 	{
 		left: 10%;
 	}
+
+    .shop .shopitems{
+        display: block;
+        
+    }
+    .shop{
+        top: 0%;
+        left: 25%;
+        margin-top: 1rem;
+    }
+    .shop img{
+        width: 50px;
+    }
+    .shop h2{
+        font-size:1.5rem;
+        margin-top: 0.5rem;
+    }
+    .shop p{
+        font-size: 1rem;
+    }
+    .shopitems button{
+        margin-bottom:0.2rem;
+    }
+    .shop-header button{
+        width: 25px;
+    height: 25px;
+    }
 }

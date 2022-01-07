@@ -21,6 +21,9 @@ const imgloader = document.querySelector('#loadingimage')
 const lblCollect = document.querySelector('.labelcollect')
 const gameReady = document.querySelector('.gameready')
 const iconWeer = document.querySelector('#iconweer')
+const houseText = document.querySelector('#housetext')
+const btnShopClose = document.querySelector('#shop-close')
+const guiShop = document.querySelector('.shop')
 
 /*Api Weerbericht*/
 // fetch settings; BRUSSEL
@@ -42,10 +45,7 @@ console.log('request mislukt: ', err)
 // verwerk data – BRUSSEL
 function verwerkData(data) {
 const icon = data.weather[0].icon
-console.log(data.weather[0].icon)
 iconWeer.src = `http://openweathermap.org/img/w/${icon}.png`
-
-
 }
 
 
@@ -62,9 +62,13 @@ sndMoneyWin.src = '/sound/money_win.mp3'
 let sndSaladCut = new Audio()
 sndSaladCut.src = '/sound/salad_cut.mp3'
 
+let sndBackground = new Audio()
+sndBackground.src = '/sound/background.mp3'
+
 let money = 4;
 let robotlvl = 1;
 let mixer = null;
+let lettuceSold = 0;
 
 
 /**
@@ -93,6 +97,7 @@ const loadingManager = new THREE.LoadingManager(
 
         window.setTimeout(() => {
             sceneReady = true
+            sndBackground.play()
             const introtxt = document.querySelector('#introtxt')
             introtxt.innerHTML = 'Hallo mijn naam is Afrem, welkom bij FarmingSimulator, druk op het scherm voor de uitleg'
 
@@ -517,18 +522,24 @@ window.addEventListener('click', (_event) => {
                 break;
             case 3:
                 introtxt.style.display = 'none'
+                scene.remove(afrem)
                 cam = camera
                 gameReady.style.opacity = 1
                 break;
         }
 
+        btnShopClose.addEventListener('click', function(){
+            guiShop.style.display = 'none'
+        })
+
+
         if (currentIntersect) {
            
 
-            if (currentIntersect.object.name == 'Box012_20_-_Default_0') {
-                console.log("Coming soon..")
+            if (currentIntersect.object.name == 'Box020_01_-_Default_0') {
+                guiShop.style.display = 'block'
             }
-
+            console.log(currentIntersect.object.name)
             if (currentIntersect.object.name == '10187_LettuceBibb_v1-L2') {
                 sndSaladCut.play()
 
@@ -540,9 +551,8 @@ window.addEventListener('click', (_event) => {
                             lblCollect.style.color = 'green'
                             lblCollect.innerHTML = 'Collected'
                             sndMoneyWin.play()
-
-
-                        } else {
+                            lettuceSold = lettuceSold + 1
+                            houseText.innerHTML = `Aantal salade verkocht: ${lettuceSold}`                        } else {
                             money = money - 0.10
                             lblCollect.style.color = 'red'
                             lblCollect.innerHTML = 'Too fast -0.10'
@@ -748,7 +758,6 @@ const tick = () => {
             }
             salade1.rotation.y += 0.002
             salade1.scale.set(growth, growth, growth)
-
 
             salade2.rotation.y += 0.002
             salade2.scale.set(growth, growth, growth)

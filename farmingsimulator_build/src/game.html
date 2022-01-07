@@ -7,7 +7,6 @@
     <title>FarmingSimulator</title>
 </head>
 <body>
-    <audio src="/static/sound/background.mp3" loop></audio>
     <canvas class="webgl"></canvas>
     <div class="loading-bar"></div>
     <div class="intro">
@@ -17,9 +16,7 @@
     <div class="gameready">
     <div class="point point-0 visible">
         <div class="label">1</div>
-        <div class="text">Kapitaal: ..€ <br>
-                          Aantal salade verkocht: ..<br>
-                          Aantal winst: ..€</div>
+        <div id="housetext" class="text">Aantal salade verkocht: 0</div>
     </div>
     <div class="point point-1 visible">
         <div class="label">2</div>
@@ -48,6 +45,38 @@
     <div class="collect visible">
         <div class="labelcollect ">Click salad to collect</div>
     </div>
+</div>
+<div class="shop">
+    <div class="shop-header">
+        <h2>Shop</h2>
+        <button id="shop-close">X</button>
+    </div>
+    <div class="shopitems">
+    <div class="Item1">
+        <h3>Lettuce</h3>
+        <img src="img/icon.png">
+        <p>€0,50</p>
+        <button id="using">Using</button>
+    </div>
+    <div class="Item2">
+        <h3>Butter Lettuce</h3>
+        <img src="img/construction.jpg">
+        <p>€20</p>
+        <button>Buy</button>
+    </div>
+    <div class="Item3">
+        <h3>Pakchoi</h3>
+        <img src="img/construction.jpg">
+        <p>€50</p>
+        <button>Buy</button>
+    </div>
+    <div class="Item4">
+        <h3>Cress</h3>
+        <img src="img/construction.jpg">
+        <p>€100</p>
+        <button>Buy</button>
+    </div>
+</div>
 </div>
 </body>
 </html>
