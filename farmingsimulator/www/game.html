@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="shortcut icon" href="assets/images/28b2a8c753e46f05.png" type="image/x-icon">
     <title>FarmingSimulator</title>
-    <script defer="defer" src="bundle.eb266f82a0bed504.js"></script>
+    <script defer="defer" src="bundle.e6a36cdee53ed155.js"></script>
     <link href="main.css" rel="stylesheet">
 </head>
 
-<body><audio src="background.mp3" loop></audio><canvas class="webgl"></canvas>
+<body><canvas class="webgl"></canvas>
     <div class="loading-bar"></div>
     <div class="intro">
         <div class="gameintro"></div>
@@ -21,7 +21,7 @@
     <div class="gameready">
         <div class="point point-0 visible">
             <div class="label">1</div>
-            <div class="text">Kapitaal: ..€<br>Aantal salade verkocht: ..<br>Aantal winst: ..€</div>
+            <div id="housetext" class="text">Aantal salade verkocht: 0</div>
         </div>
         <div class="point point-1 visible">
             <div class="label">2</div>
@@ -35,15 +35,43 @@
             <div class="label">4</div>
             <div class="textr">Precision: 16.66% Automatisation not working<br>5€ for activation</div>
         </div>
-        <div class="pointmoney point-4 visible">
-            <div class="labelmoney">💰 €4</div>
-        </div>
-        <div class="pointrobot point-5 visible">
-            <div class="labelrobot">🔧 1/5</div>
-            <div class="textrobot">Upgrade cost €5</div>
+        <div>
+            <div class="pointmoney point-4 visible">
+                <div class="labelmoney">💰 €4</div>
+            </div>
+            <div class="pointweer point-4 visible">
+                <div class="labelweer"><img id="iconweer" src="assets/images/06c61ef99a670960.png"></div>
+            </div>
+            <div class="pointrobot point-5 visible">
+                <div class="labelrobot">🔧 1/5</div>
+                <div class="textrobot">Upgrade cost €5</div>
+            </div>
         </div>
         <div class="collect visible">
             <div class="labelcollect">Click salad to collect</div>
+        </div>
+    </div>
+    <div class="shop">
+        <div class="shop-header">
+            <h2>Shop</h2><button id="shop-close">X</button>
+        </div>
+        <div class="shopitems">
+            <div class="Item1">
+                <h3>Lettuce</h3><img src="assets/images/28b2a8c753e46f05.png">
+                <p>€0,50</p><button id="using">Using</button>
+            </div>
+            <div class="Item2">
+                <h3>Butter Lettuce</h3><img src="assets/images/b8e09c43e797be43.jpg">
+                <p>€20</p><button>Buy</button>
+            </div>
+            <div class="Item3">
+                <h3>Pakchoi</h3><img src="assets/images/b8e09c43e797be43.jpg">
+                <p>€50</p><button>Buy</button>
+            </div>
+            <div class="Item4">
+                <h3>Cress</h3><img src="assets/images/b8e09c43e797be43.jpg">
+                <p>€100</p><button>Buy</button>
+            </div>
         </div>
     </div>
 </body>
