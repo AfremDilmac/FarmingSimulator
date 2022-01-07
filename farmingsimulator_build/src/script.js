@@ -20,6 +20,34 @@ const lblRobotPrecision = document.querySelector('.textr')
 const imgloader = document.querySelector('#loadingimage')
 const lblCollect = document.querySelector('.labelcollect')
 const gameReady = document.querySelector('.gameready')
+const iconWeer = document.querySelector('#iconweer')
+
+/*Api Weerbericht*/
+// fetch settings; BRUSSEL
+let url = 'https://api.openweathermap.org/data/2.5/weather?id=2800866&appid=f872ea812be596f5bcdbd8ba36387f8b&units=metric&lang=nl'; // basis url
+let options = {}; // extra opties
+let params = new URLSearchParams(); // extra parameters
+params.append('q', 'appid');
+params.append('lang', 'units');
+
+// fetch url; BRUSSEL
+fetch(url, options)
+.then(resp => { return resp.json(); })
+.then(data => verwerkData(data))
+.catch(err => verwerkFout(err));
+// verwerk fouten – BRUSSEL
+function verwerkFout(err) {
+console.log('request mislukt: ', err)
+}
+// verwerk data – BRUSSEL
+function verwerkData(data) {
+const icon = data.weather[0].icon
+console.log(data.weather[0].icon)
+iconWeer.src = `http://openweathermap.org/img/w/${icon}.png`
+
+
+}
+
 
 /**
  * Sounds

@@ -71,6 +71,17 @@ body
     left: 27%;
 }
 
+.pointweer
+{
+    position: absolute;
+    top: 10%;
+    left: 60%;
+}
+
+.pointweer .labelweer img{
+    width:43%;
+}
+
 .pointrobot
 {
     position: absolute;
@@ -82,7 +93,7 @@ body
 {
     position: absolute;
     top: 10%;
-    left: 40%;
+    left: 27%;
 }
 
 .pointmoney .labelmoney{
@@ -102,10 +113,27 @@ body
     font-size: 14px;
     transform: scale(0, 0);
     transition: transform 0.3s;
+   
 }
 
-.intro .gameintro{
-
+.pointweer .labelweer{
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5%;
+    background: #92929277;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    font-family: Helvetica, Arial, sans-serif;
+    text-align: center;
+    line-height: 40px;
+    font-weight: 100;
+    font-size: 14px;
+    transform: scale(0, 0);
+    transition: transform 0.3s;
+  
 }
 
 .labelintro{
@@ -136,6 +164,7 @@ body
     font-size: 14px;
     transform: scale(0, 0);
     transition: transform 0.3s;
+   
 }
 
 .point .label
@@ -228,6 +257,22 @@ body
     font-size: 14px;
 }
 
+.pointweer .textweer{
+    position: absolute;
+    top: 30px;
+    left: -120px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 4px;
+    background: #00000077;
+    border: 1px solid #ffffff77;
+    color: #ffffff;
+    line-height: 1.3em;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: 100;
+    font-size: 14px;
+}
+
 
 
 .pointrobot .textrobot{
@@ -276,6 +321,13 @@ body
     cursor: help;
 }
 
+.pointweer .textweer{
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    cursor: help;
+}
+
 .pointrobot .textrobot{
     opacity: 0;
     transition: opacity 0.3s;
@@ -307,6 +359,11 @@ body
     transform: scale(1, 1);
 }
 
+.pointweer.visible .labelweer
+{
+    transform: scale(1, 1);
+}
+
 .pointrobot.visible .labelrobot
 {
     transform: scale(1, 1);
@@ -322,6 +379,7 @@ body
     transform: scale(1, 1);
 }
 
+
 /* Animation */
 .anim-typewriter{
     animation: typewriter 12s steps(44) 1s 1 normal both,
@@ -335,3 +393,11 @@ body
     from{border-right-color: rgba(255,255,255,.75);}
     to{border-right-color: transparent;}
   }
+
+  @media (max-width: 530px)
+{
+	.collect
+	{
+		left: 10%;
+	}
+}
