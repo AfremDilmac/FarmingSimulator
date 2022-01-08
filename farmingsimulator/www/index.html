@@ -35,7 +35,7 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
-        <title>Hello World</title>
+        <title>Farming Simulator</title>
     </head>
     <body>
         <main>
@@ -54,8 +54,8 @@
                   <div class="lgn">
                   <form class="login-form">
                     <h2>Login</h2>
-                    <input id="login" type="text" placeholder="username"/>
-                    <input id="pwd" type="password" placeholder="password"/>
+                    <label for="login">Login:</label><input type="text" id="login"><br>
+                    <label for="pwd">Paswoord:</label><input type="password" id="pwd"><br>
                     <p id="loginverification"></p>
                     <button id="btnTestLogin">login</button>
                     <p id="loginverification"></p>
@@ -67,6 +67,6 @@
     
         </main>
         <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
+        <script src="login.js"></script>
     </body>
 </html>

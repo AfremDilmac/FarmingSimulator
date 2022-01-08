@@ -1,12 +1,13 @@
-
 (function() {
     "use strict";
     /*jslint browser: true*/
     /*jslint devel: true*/
     let baseApiAddress = "https://dilmac.be/wm/api/api/";
     /* Vorige lijn aanpassen naar de locatie op jouw domein! */
-
-    let alertEl = document.getElementById("alert");
+    const lblRegister = document.getElementById("lblregister");
+    const lblLogin = document.getElementById("lbllogin");
+    let registerForm = document.querySelector('.lgn');
+    let loginForm = document.querySelector('.rgst');
     let opties = {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
         mode: "cors", // no-cors, *cors, same-origin
@@ -25,18 +26,12 @@
     lblRegister.addEventListener("click", function(){
         registerForm.style.display = "none";
         loginForm.style.display = "block";
-        
+
     });
 
     lblLogin.addEventListener("click", function(){
         registerForm.style.display = "block";
         loginForm.style.display = "none";
-       
-
-    })
-
-    btnCreateAccount.addEventListener("click", function(){
-
     })
 
     function getApiGebruiker() {
@@ -63,7 +58,8 @@
                 if (responseData.status < 200 || responseData.status > 299) {
                     // login faalde, boodschap weergeven
                     // Hier kan je ook een groter onderscheid maken tussen de verschillende vormen van login falen.
-                    console.log("ok")
+                    console.log("Login mislukt : deze naam/paswoord combinatie bestaat niet");
+                  
                     // return, zodat de rest van de fetch niet verder uitgevoerd wordt
                     return;
                 }
@@ -75,7 +71,7 @@
                     // list bevat minstens 1 itemproperty met waarde
                     // we nemen het eerste
                     console.log("Gebruikersgevens ok : ID = " + list[0].ID);
-                    document.location.href = "game.html";
+                    window.location.href = "game.html";
                 } else {
                     console.log("Login failed : this login/password combination does not exist");
                 }
@@ -83,13 +79,13 @@
             })
             .catch(function(error) {
                 // verwerk de fout
-                alertEl.innerHTML = "fout : " + error;
+                console.log("fout : " + error)
             });
     }
 
-    function addGebruiker() {
+    function addApiGebruiker() {
         // de producten van de server opvragen en weergeven dmv de alerter functie
-        let url = baseApiAddress + "register.php";
+        let url = baseApiAddress + "REGISTERadd.php";
 
         // body data type must match "Content-Type" header
         opties.body = JSON.stringify({
@@ -109,27 +105,12 @@
     }
 
     // EventListeners
-    document.getElementById("btnTestLogin").addEventListener("click", function(event) {
-        
+    document.getElementById("btnTestLogin").addEventListener("click", function() {
         getApiGebruiker();
-        if (unknown > 0) {
-            event.preventDefault()
-            alertEl.innerHTML = "Login mislukt : deze naam/paswoord combinatie bestaat niet"
-        }
-
     });
 
-    document.getElementById("btnTestRegister").addEventListener("click", function(event) {
-        if (nameRegister.value && passwordRegister.value != "") {
-            addGebruiker();            
-        }
-        else{
-            event.preventDefault()
-           
-        }
-       
+    document.getElementById("btnTestRegister").addEventListener("click", function() {
+        addApiGebruiker();
     });
-
-
 
 })();

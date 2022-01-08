@@ -8,8 +8,13 @@ margin-top: 6rem;
 
 }
 .lgn{
-    display:none;
+    display:block;
 }
+
+.rgst{
+  display:none;
+}
+
 
 .form {
   position: relative;
