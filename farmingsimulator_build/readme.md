@@ -14,6 +14,5 @@ npm run dev
 # Build for production in the dist/ directory
 npm run build
 ```
-## Setup
 # Dist folder
 Deze map bevat de bestanden na de npm run build (dus degene die je kunt gebruiken om het ergens te hosten)
