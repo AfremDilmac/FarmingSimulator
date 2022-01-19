@@ -1,14 +1,21 @@
+/*IMPORTS*/
 import './style.css'
 import * as dat from 'lil-gui'
 import * as THREE from 'three'
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader.js'  
-import {DRACOLoader} from 'three/examples/jsm/loaders/DRACOLoader.js'
-import {gsap} from 'gsap'
+import {
+    OrbitControls
+} from 'three/examples/jsm/controls/OrbitControls.js'
+import {
+    GLTFLoader
+} from 'three/examples/jsm/loaders/GLTFLoader.js'
+import {
+    DRACOLoader
+} from 'three/examples/jsm/loaders/DRACOLoader.js'
+import {
+    gsap
+} from 'gsap'
 import waterVertexShader from './shaders/water/vertex.glsl'
 import waterFragmentShader from './shaders/water/fragment.glsl'
-
-
 
 /**
  * Html JS link
@@ -35,17 +42,19 @@ params.append('lang', 'units');
 
 // fetch url; BRUSSEL
 fetch(url, options)
-.then(resp => { return resp.json(); })
-.then(data => verwerkData(data))
-.catch(err => verwerkFout(err));
+    .then(resp => {
+        return resp.json();
+    })
+    .then(data => verwerkData(data))
+    .catch(err => verwerkFout(err));
 // verwerk fouten – BRUSSEL
 function verwerkFout(err) {
-console.log('request mislukt: ', err)
+    console.log('request mislukt: ', err)
 }
 // verwerk data – BRUSSEL
 function verwerkData(data) {
-const icon = data.weather[0].icon
-iconWeer.src = `http://openweathermap.org/img/w/${icon}.png`
+    const icon = data.weather[0].icon
+    iconWeer.src = `http://openweathermap.org/img/w/${icon}.png`
 }
 
 
@@ -100,9 +109,6 @@ const loadingManager = new THREE.LoadingManager(
             sndBackground.play()
             const introtxt = document.querySelector('#introtxt')
             introtxt.innerHTML = 'Hallo mijn naam is Afrem, welkom bij FarmingSimulator, druk op het scherm voor de uitleg'
-
-            
-
         }, 2000)
     },
 
@@ -120,8 +126,6 @@ const loadingManager = new THREE.LoadingManager(
  */
 // Debug
 const debugObject = {}
-
-
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
@@ -249,7 +253,7 @@ const updateAllMaterials = () => {
 /**
  * Lights
  */
-// Pole light material
+
 
 const directionalLightDay = new THREE.DirectionalLight('#ffffff', 1)
 directionalLightDay.position.set(0.25, 3, -2.25)
@@ -266,21 +270,14 @@ const poleLight = new THREE.PointLight(0xff9000, 0.5, 10, 2)
 poleLight.position.set(-2.548, 0.711, 1.167)
 scene.add(poleLight)
 
-
-
 const doorLight = new THREE.PointLight(0xffffff, 0.5, 10, 2)
 doorLight.position.set(-1.701, 0.646, 2.667)
 scene.add(doorLight)
 
 
-/* 
-const helper = new THREE.DirectionalLightHelper( directionalLight, 5 );
-scene.add( helper );
-*/
 /**
  * Loaders
  */
-
 
 // Draco loader
 const dracoLoader = new DRACOLoader()
@@ -296,24 +293,20 @@ gltfLoader.setDRACOLoader(dracoLoader)
  */
 let afrem = ''
 let animation = ''
- gltfLoader.load(
+gltfLoader.load(
     '/models/AFREM.glb',
-    (gltf) =>
-    {
-      
+    (gltf) => {
 
         animation = gltf
-        afrem = gltf.scene 
+        afrem = gltf.scene
         mixer = new THREE.AnimationMixer(afrem)
         let action = mixer.clipAction(gltf.animations[1]) //0 = dance and 1 == wave
         action.play()
 
-        
-        
-afrem.position.x = -5
-afrem.position.y = -20.5
-afrem.position.z = -11
-scene.add(afrem) 
+        afrem.position.x = -5
+        afrem.position.y = -20.5
+        afrem.position.z = -11
+        scene.add(afrem)
     }
 )
 
@@ -372,7 +365,6 @@ const gameProgress = {
     progress: 1
 }
 
-
 //Robot Arm
 gltfLoader.load(
     'robot.glb',
@@ -399,8 +391,6 @@ gltfLoader.load(
     'lettuce.glb',
     (gltf) => {
 
-       
-
         gltf.scene.position.x = -2.36
         gltf.scene.position.y = 0
         gltf.scene.position.z = -2.28
@@ -410,7 +400,7 @@ gltfLoader.load(
         salade1.scale.set(0.6, 0.6, 0.6)
         scene.add(salade1)
 
-        
+
         salade2 = gltf.scene.clone();
         salade2.position.x = -1.45
         salade2.position.y = 0
@@ -510,11 +500,11 @@ window.addEventListener('click', (_event) => {
     if (sceneReady) {
         let timing = growth
 
-       
+
         switch (gameProgress.progress) {
             case 1:
                 introtxt.innerHTML = 'Het doel is om sla te verzamelen, de boerderij en de robot te verbeteren!'
-            gameProgress.progress = 2
+                gameProgress.progress = 2
                 break;
             case 2:
                 introtxt.innerHTML = 'Een beetje advies voordat je begint, zorg ervoor dat je de salade op het juiste moment verzamelt, zodat je niet te veel geld verliest'
@@ -528,13 +518,13 @@ window.addEventListener('click', (_event) => {
                 break;
         }
 
-        btnShopClose.addEventListener('click', function(){
+        btnShopClose.addEventListener('click', function () {
             guiShop.style.display = 'none'
         })
 
 
         if (currentIntersect) {
-           
+
 
             if (currentIntersect.object.name == 'Box020_01_-_Default_0') {
                 guiShop.style.display = 'block'
@@ -543,7 +533,7 @@ window.addEventListener('click', (_event) => {
             if (currentIntersect.object.name == '10187_LettuceBibb_v1-L2') {
                 sndSaladCut.play()
 
-                
+
                 switch (random) {
                     case 1:
                         if (timing >= 1.05 && timing <= 1.44) {
@@ -552,7 +542,8 @@ window.addEventListener('click', (_event) => {
                             lblCollect.innerHTML = 'Collected'
                             sndMoneyWin.play()
                             lettuceSold = lettuceSold + 1
-                            houseText.innerHTML = `Aantal salade verkocht: ${lettuceSold}`                        } else {
+                            houseText.innerHTML = `Aantal salade verkocht: ${lettuceSold}`
+                        } else {
                             money = money - 0.10
                             lblCollect.style.color = 'red'
                             lblCollect.innerHTML = 'Too fast -0.10'
@@ -564,8 +555,7 @@ window.addEventListener('click', (_event) => {
                 }
                 lblMoney.innerHTML = `💰 €${Math.round(money * 100) / 100}`
             }
-            if(currentIntersect.object.name == 'link_1')
-            {
+            if (currentIntersect.object.name == 'link_1') {
                 if (money >= 5) {
                     if (robotproperities.robotPrecision == 5) {
                         robotproperities.robotPrecision = 4
@@ -650,7 +640,7 @@ renderer.setClearColor(debugObject.clearColor)
  * Camera
  */
 //GENERAL CAMERA GAME
- const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
+const camera = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
 
 //START CAMERA INTRODUCTION
 const camera2 = new THREE.PerspectiveCamera(45, sizes.width / sizes.height, 0.1, 100)
@@ -684,7 +674,7 @@ function render() {
 /**
  * Points
  */
-
+//Points dat een Vector 3 positie hebben
 const points = [{
         position: new THREE.Vector3(1.25, 1.25, 1.05),
         element: document.querySelector('.point-0')
@@ -781,8 +771,7 @@ const tick = () => {
             salade8.scale.set(growth, growth, growth)
         }
 
-        if(mixer)
-        {
+        if (mixer) {
             mixer.update(0.01)
         }
 

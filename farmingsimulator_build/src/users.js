@@ -102,7 +102,7 @@
             });
     }
 
-    function addApiProducten() {
+    function addApiGebruikers() {
         // de producten van de server opvragen en weergeven dmv de alerter functie
         let url = baseApiAddress + "register.php";
 
@@ -136,7 +136,7 @@
 
     document.getElementById("btnTestRegister").addEventListener("click", function(event) {
         if (nameRegister.value && passwordRegister.value != "") {
-            addApiProducten();            
+            addApiGebruikers()       
         }
         else{
             event.preventDefault()

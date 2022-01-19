@@ -64,6 +64,7 @@ body
     width: 20%;
 }
 
+/*Points (with or without text)*/
 .pointmoney
 {
     position: absolute;
@@ -379,6 +380,8 @@ body
     transform: scale(1, 1);
 }
 
+/*Shop*/
+
 .shop{
     background-color: rgb(69, 160, 69);
     position: absolute;
@@ -468,21 +471,6 @@ body
     font-size:0.6rem;
     font-weight: bold;
 }
-
-
-/* Animation */
-.anim-typewriter{
-    animation: typewriter 12s steps(44) 1s 1 normal both,
-               blinkTextCursor 1200ms steps(44) infinite normal;
-  }
-  @keyframes typewriter{
-    from{width: 0;}
-    to{width: 20em;}
-  }
-  @keyframes blinkTextCursor{
-    from{border-right-color: rgba(255,255,255,.75);}
-    to{border-right-color: transparent;}
-  }
 
   @media (max-width: 530px)
 {
